@@ -2,17 +2,6 @@
 <html lang="es">
 
 <head>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-23Y5TBLYTM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-23Y5TBLYTM');
-</script>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fluxy AI WhatsApp</title>
@@ -32,6 +21,582 @@
 
   <!-- Tailwind (para preview). En prod: compilar Tailwind y servir CSS propio -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fluxy Flow (scoped) -->
+  <style>
+    /* ======= Fluxy Flow (scoped) ======= */
+    #fluxy-flow {
+      --color-bg-page: #f5f5f5;
+      --color-bg-light: #ffffff;
+      --color-text-dark: #1f2937;
+      --color-text-mid: #3f3f46;
+      --color-border: #e5e7eb;
+      --color-pink-main: #f70776;
+      --color-pink-dark: #c5065e;
+      --wa-green: #25D366;
+      --wa-bubble: #DCF8C6;
+      --wa-bubble-border: #BDEFB1;
+      --device-size: 260px;
+    }
+
+    #fluxy-flow .ff-main-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0;
+      position: relative;
+      overflow-x: hidden
+    }
+
+    #fluxy-flow .ff-diagram-wrapper {
+      width: 100%;
+      max-width: 72rem;
+      position: relative
+    }
+
+    #fluxy-flow .ff-glow-effect {
+      position: absolute;
+      inset: 0;
+      z-index: -10;
+      filter: blur(3rem);
+      opacity: .25;
+      background: radial-gradient(600px 300px at 50% 50%, rgba(247, 7, 118, .15), transparent 60%)
+    }
+
+    #fluxy-flow .ff-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: center
+    }
+
+    @media (min-width:768px) {
+      #fluxy-flow .ff-grid-layout {
+        grid-template-columns: repeat(12, 1fr)
+      }
+
+      #fluxy-flow .ff-columna-entradas {
+        grid-column: span 3 / span 3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      #fluxy-flow .ff-columna-core {
+        grid-column: span 6 / span 6;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      #fluxy-flow .ff-columna-resultado {
+        grid-column: span 3 / span 3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end
+      }
+    }
+
+    #fluxy-flow .ff-card-grid {
+      display: grid;
+      gap: .75rem;
+      width: 100%;
+      max-width: 280px
+    }
+
+    #fluxy-flow .ff-card {
+      border-radius: 1rem;
+      padding: .85rem 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .08), 0 4px 6px -2px rgba(0, 0, 0, .04);
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-light);
+      color: var(--color-text-dark);
+      position: relative;
+      transform-origin: left bottom
+    }
+
+    #fluxy-flow .ff-wa-bubble {
+      background: var(--wa-bubble);
+      border-color: var(--wa-bubble-border);
+      line-height: 1.35;
+      padding-right: 2.25rem
+    }
+
+    #fluxy-flow .ff-wa-bubble::after {
+      content: "";
+      position: absolute;
+      left: -8px;
+      bottom: 8px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid var(--wa-bubble);
+      border-left: 8px solid transparent;
+      filter: drop-shadow(-1px 1px 0 rgba(0, 0, 0, .06))
+    }
+
+    #fluxy-flow .ff-wa-text {
+      font-size: .95rem
+    }
+
+    #fluxy-flow .ff-wa-meta {
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+      font-size: .7rem;
+      color: #64748b;
+      margin-top: .35rem
+    }
+
+    #fluxy-flow .ff-wa-check {
+      position: absolute;
+      right: .6rem;
+      bottom: .6rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--wa-green);
+      opacity: .75;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    #fluxy-flow .ff-wa-check svg {
+      width: 10px;
+      height: 10px;
+      fill: #fff
+    }
+
+    #fluxy-flow .ff-core-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 230px
+    }
+
+    #fluxy-flow .ff-core-box {
+      aspect-ratio: 4/3;
+      border-radius: 1.5rem;
+      background: var(--color-pink-main);
+      border: 1px solid var(--color-pink-dark);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #fff;
+      position: relative
+    }
+
+    #fluxy-flow .ff-core-grid-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: .2;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, .18) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255, .18) 1px, transparent 1px);
+      background-size: 28px 28px
+    }
+
+    #fluxy-flow .ff-core-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    #fluxy-flow .ff-brand-title {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.05;
+      text-align: center
+    }
+
+    #fluxy-flow .ff-brand-subtitle {
+      margin-top: .5rem;
+      font-size: clamp(.9rem, 2.2vw, 1.05rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, .9);
+      letter-spacing: .04em;
+      text-align: center
+    }
+
+    #fluxy-flow .ff-outputs-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      width: 100%
+    }
+
+    #fluxy-flow .ff-result-widgets {
+      display: grid;
+      gap: 12px;
+      width: 100%;
+      max-width: 300px
+    }
+
+    #fluxy-flow .ff-widget {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: .9rem;
+      box-shadow: 0 12px 18px -8px rgba(0, 0, 0, .12)
+    }
+
+    #fluxy-flow .ff-widget-title {
+      margin: 0 0 .5rem 0;
+      font-size: .9rem;
+      color: #374151;
+      letter-spacing: .02em;
+      display: flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    #fluxy-flow .ff-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--color-pink-main);
+      opacity: .7
+    }
+
+    #fluxy-flow .ff-calendar-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 6px
+    }
+
+    #fluxy-flow .ff-cal-day {
+      text-align: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #6b7280;
+      letter-spacing: .04em;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: .5rem;
+      padding: .35rem 0
+    }
+
+    #fluxy-flow .ff-calendar {
+      --cols: 7;
+      --rows: 5;
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      gap: 6px
+    }
+
+    #fluxy-flow .ff-cal-cell {
+      aspect-ratio: 1/1;
+      border-radius: .5rem;
+      border: 1px dashed #e5e7eb;
+      background: #fafafa;
+      position: relative;
+      overflow: hidden
+    }
+
+    #fluxy-flow .ff-cal-cell.blink {
+      background: rgba(247, 7, 118, .12);
+      box-shadow: 0 0 0 2px rgba(247, 7, 118, .35) inset
+    }
+
+    #fluxy-flow .ff-cal-cell.blink::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(247, 7, 118, .32);
+      animation: ff-cal-flash .55s ease-out forwards
+    }
+
+    @keyframes ff-cal-flash {
+      0% {
+        opacity: 0
+      }
+
+      30% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0
+      }
+    }
+
+    #fluxy-flow .ff-kpi-card {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem
+    }
+
+    #fluxy-flow .ff-kpi-head {
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    #fluxy-flow .ff-chips {
+      margin-left: auto;
+      display: flex;
+      gap: .25rem
+    }
+
+    #fluxy-flow .ff-chip {
+      font-size: .7rem;
+      padding: .15rem .5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: .6rem;
+      background: #fff;
+      color: #334155;
+      cursor: default
+    }
+
+    #fluxy-flow .ff-chip.ff-active {
+      border-color: var(--color-pink-main);
+      color: var(--color-pink-dark);
+      background: rgba(247, 7, 118, .08)
+    }
+
+    #fluxy-flow .ff-dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--color-pink-main);
+      box-shadow: 0 0 0 0 rgba(247, 7, 118, .5);
+      animation: ff-pulse 1.6s infinite
+    }
+
+    @keyframes ff-pulse {
+      to {
+        box-shadow: 0 0 0 14px rgba(247, 7, 118, 0)
+      }
+    }
+
+    #fluxy-flow .ff-kpi-body {
+      display: flex;
+      align-items: center;
+      gap: .9rem
+    }
+
+    #fluxy-flow .ff-kpi-main {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    #fluxy-flow .ff-kpi-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a
+    }
+
+    #fluxy-flow .ff-kpi-sub {
+      font-size: .75rem;
+      color: #64748b
+    }
+
+    #fluxy-flow .ff-progress {
+      height: 8px;
+      background: #f3f4f6;
+      border-radius: 999px;
+      overflow: hidden
+    }
+
+    #fluxy-flow .ff-progress>span {
+      display: block;
+      height: 100%;
+      background: var(--color-pink-main);
+      width: 0%;
+      transition: width .6s ease
+    }
+
+    #fluxy-flow .ff-kpi-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .25rem
+    }
+
+    #fluxy-flow .ff-spark {
+      width: 90px;
+      height: 28px;
+      color: rgba(247, 7, 118, .7)
+    }
+
+    #fluxy-flow .ff-trend {
+      font-size: .75rem;
+      color: #16a34a
+    }
+
+    #fluxy-flow .ff-trend.down {
+      color: #ef4444
+    }
+
+    #fluxy-flow .ff-kpi-feed {
+      margin: .25rem 0 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: .75rem;
+      color: #475569;
+      display: grid;
+      gap: .2rem
+    }
+
+    #fluxy-flow .ff-kpi-feed li {
+      display: flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    #fluxy-flow .ff-kpi-feed li::before {
+      content: "✔";
+      color: #16a34a;
+      font-weight: 700
+    }
+
+    #fluxy-flow .ff-badge {
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: .2rem .55rem;
+      border-radius: .7rem;
+      background: rgba(247, 7, 118, .12);
+      color: var(--color-pink-dark);
+      border: 1px solid rgba(247, 7, 118, .25)
+    }
+
+    #fluxy-flow .ff-svg-layer {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible
+    }
+
+    @keyframes ff-bubble-in {
+      0% {
+        transform: translateX(-8px) translateY(12px) scale(.96) rotate(-1deg);
+        opacity: 0
+      }
+
+      60% {
+        transform: translateX(2px) translateY(-4px) scale(1.02) rotate(.6deg);
+        opacity: 1
+      }
+
+      100% {
+        transform: translateX(0) translateY(0) scale(1) rotate(0)
+      }
+    }
+
+    @keyframes ff-shake {
+
+      0%,
+      100% {
+        transform: translateX(0) rotate(0)
+      }
+
+      20% {
+        transform: translateX(-2px) rotate(-.6deg)
+      }
+
+      40% {
+        transform: translateX(2px) rotate(.6deg)
+      }
+
+      60% {
+        transform: translateX(-1px) rotate(-.3deg)
+      }
+
+      80% {
+        transform: translateX(1px) rotate(.3deg)
+      }
+    }
+
+    @keyframes ff-notif-pop {
+      0% {
+        transform: scale(0)
+      }
+
+      60% {
+        transform: scale(1.15)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    @keyframes ff-pulse-dot {
+      0% {
+        opacity: 0;
+        transform: scale(.8)
+      }
+
+      50% {
+        opacity: .8;
+        transform: scale(1)
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(.8)
+      }
+    }
+
+    #fluxy-flow .chaos .ff-wa-bubble {
+      animation: ff-bubble-in .45s cubic-bezier(.2, .9, .25, 1) both, ff-shake .55s ease-in-out .5s 2;
+    }
+
+    #fluxy-flow .chaos #ff-card-1.ff-wa-bubble {
+      animation-delay: .05s, .55s
+    }
+
+    #fluxy-flow .chaos #ff-card-2.ff-wa-bubble {
+      animation-delay: .15s, .65s
+    }
+
+    #fluxy-flow .chaos #ff-card-3.ff-wa-bubble {
+      animation-delay: .25s, .75s
+    }
+
+    #fluxy-flow .chaos #ff-card-4.ff-wa-bubble {
+      animation-delay: .35s, .85s
+    }
+
+    #fluxy-flow .chaos #ff-card-5.ff-wa-bubble {
+      animation-delay: .45s, .95s
+    }
+
+    #fluxy-flow .chaos .ff-card::before {
+      content: "";
+      position: absolute;
+      right: -14px;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--wa-green);
+      opacity: 0;
+      animation: ff-pulse-dot 1.2s ease-out .6s 2;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #fluxy-flow .chaos .ff-wa-bubble,
+      #fluxy-flow .chaos .ff-card::before {
+        animation: none !important
+      }
+
+      #fluxy-flow .ff-cal-cell.blink::after {
+        animation: none !important
+      }
+    }
+  </style>
+
   <script>
     tailwind.config = {
       theme: {
@@ -644,6 +1209,36 @@
         transform: none;
       }
     }
+
+    /* Contenedor donde insertás el flujo */
+    .fluxy-host {
+      max-width: 1350 px;
+      /* ajustá a tu grid (p.ej. 1024 / 1200 / 1280) */
+      margin: 0 auto;
+      padding: 24px 16px;
+      /* espacio arriba/abajo (opcional) */
+    }
+
+    /* El iframe del flujo */
+    #fluxy-frame {
+      display: block;
+      width: 100%;
+      /* ocupa todo el ancho disponible */
+      height: 640px;
+      /* Fallback inicial (se reajusta con postMessage) */
+      border: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      /* opcional: bordes suaves */
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .08);
+      /* opcional */
+    }
+
+    /* Evitar barra horizontal global por elementos full-bleed/100vw */
+    html,
+    body {
+      overflow-x: hidden;
+    }
   </style>
 
 </head>
@@ -659,7 +1254,7 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <a href="#" class="flex items-center" aria-label="Inicio Fluxy">
-            <img src="./static/Color logo - no background.png" alt="Logo Fluxy" class="h-10 w-auto block" />
+            <img src="/static/Color logo - no background.png" alt="Logo Fluxy" class="h-10 w-auto block" />
           </a>
         </div>
 
@@ -671,9 +1266,9 @@
         </nav>
 
         <div class="hidden sm:flex items-center space-x-3">
-          <a href="https://wa.me/59892131808?text=Quiero%20informacion%20sobre%20Fluxy" target="_blank" rel="noopener"
-            class="bg-fluxy text-white px-5 py-2 rounded-full font-medium hover:bg-pink-600 transition">Hablá por
-            WhatsApp</a>
+          <a href="https://wa.me/59892131808?text=Quiero%20probar%20Fluxy" target="_blank" rel="noopener"
+            class="bg-fluxy text-white px-5 py-2 rounded-full font-medium hover:bg-pink-600 transition">Hablá con
+            Fluxy</a>
           <a href="#cta"
             class="border-2 border-fluxy text-fluxy px-5 py-2 rounded-full font-medium hover:bg-fluxy hover:text-white transition">Probalo
             gratis 30 días</a>
@@ -696,12 +1291,11 @@
     <section class="bg-gradient-to-br from-fluxy to-pink-500 text-white py-20">
       <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-white">
-  Fluxy gestiona tu
-  <span class="text-yellow-400">WhatsApp</span>
-  mientras vos hacés crecer tu negocio
-</h1>
-
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            Fluxy gestiona tu
+            <span class="text-yellow-400">WhatsApp</span>
+            mientras vos hacés crecer tu negocio
+          </h1>
 
           <p class="text-xl mb-8">
             Responde consultas, gestiona reserva, procesa comprobantes, envía recordatorios y mucho más!
@@ -717,7 +1311,7 @@
         </div>
         <div class="md:w-1/2 flex justify-center">
           <div class="relative">
-            <img src="./static/pulpo_fluxy.png" alt="Asistente de WhatsApp automatizando conversaciones"
+            <img src="/static/pulpo_fluxy.png" alt="Asistente de WhatsApp automatizando conversaciones"
               class="w-full max-w-lg octopus-bounce" width="800" height="600" decoding="async" />
           </div>
         </div>
@@ -887,14 +1481,200 @@
       </div>
     </section>
 
+    <section id="demo-fluxy" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">
+          Mirá cómo Fluxy orquesta tu WhatsApp
+        </h2>
 
 
 
 
+        <div id="fluxy-flow" class="relative">
+          <div class="ff-main-container">
+            <div id="ff-diagram" class="ff-diagram-wrapper chaos">
+              <div class="ff-glow-effect"></div>
 
+              <div class="ff-grid-layout">
+                <div class="ff-columna ff-columna-entradas">
+                  <div class="ff-card-grid">
+                    <div id="ff-card-1" class="ff-card ff-wa-bubble" aria-label="Mensaje: preguntas">
+                      <div class="ff-wa-text">¡Hola! ¿Cuánto sale el plan mensual y hay cupos esta semana?</div>
+                      <div class="ff-wa-meta">Preguntas • FAQs / estado / precios</div>
+                      <span class="ff-wa-check" aria-hidden="true">
+                        <svg viewBox="0 0 16 16">
+                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div id="ff-card-2" class="ff-card ff-wa-bubble" aria-label="Mensaje: alta de usuario">
+                      <div class="ff-wa-text">Hola, soy Sofi 🙋‍♀️. ¿Me registrás para empezar este mes?</div>
+                      <div class="ff-wa-meta">Altas de usuarios • leads / registros</div>
+                      <span class="ff-wa-check" aria-hidden="true">
+                        <svg viewBox="0 0 16 16">
+                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div id="ff-card-3" class="ff-card ff-wa-bubble" aria-label="Mensaje: cancelación">
+                      <div class="ff-wa-text">Hola! Quiero cancelar mi clase de mañana, porfa.</div>
+                      <div class="ff-wa-meta">Cancelaciones • planes / clases</div>
+                      <span class="ff-wa-check" aria-hidden="true">
+                        <svg viewBox="0 0 16 16">
+                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div id="ff-card-4" class="ff-card ff-wa-bubble" aria-label="Mensaje: reserva">
+                      <div class="ff-wa-text">¿Me reservás Reformer hoy 19:30? 🙏</div>
+                      <div class="ff-wa-meta">Reservas • clases y turnos</div>
+                      <span class="ff-wa-check" aria-hidden="true">
+                        <svg viewBox="0 0 16 16">
+                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div id="ff-card-5" class="ff-card ff-wa-bubble" aria-label="Mensaje: comprobante">
+                      <div class="ff-wa-text">Te paso el comprobante del pago de agosto. ¿Lo recibiste?</div>
+                      <div class="ff-wa-meta">Documentos • comprobantes y recibos</div>
+                      <span class="ff-wa-check" aria-hidden="true">
+                        <svg viewBox="0 0 16 16">
+                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
+                <div class="ff-columna ff-columna-core">
+                  <div id="ff-core" class="ff-core-wrapper">
+                    <div class="ff-core-box">
+                      <div class="ff-core-grid-pattern"></div>
+                      <div class="ff-core-content">
+                        <div class="ff-brand-title">FLUXY</div>
+                        <div class="ff-brand-subtitle">Tu equipo digital</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
+                <div class="ff-columna ff-columna-resultado">
+                  <div class="ff-outputs-col">
+                    <div class="ff-result-widgets">
+                      <div class="ff-widget ff-output-target" id="ff-w-calendar">
+                        <h3 class="ff-widget-title"><span class="ff-dot"></span> Agenda automatizada</h3>
+                        <div class="ff-calendar-header" aria-hidden="true">
+                          <div class="ff-cal-day">L</div>
+                          <div class="ff-cal-day">M</div>
+                          <div class="ff-cal-day">M</div>
+                          <div class="ff-cal-day">J</div>
+                          <div class="ff-cal-day">V</div>
+                          <div class="ff-cal-day">S</div>
+                          <div class="ff-cal-day">D</div>
+                        </div>
+                        <div class="ff-calendar" id="ff-calendar-grid" aria-label="Calendario con reservas">
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                          <div class="ff-cal-cell"></div>
+                        </div>
+                      </div>
+                      <div class="ff-widget ff-kpi-card ff-output-target" id="ff-w-receipts">
+                        <div class="ff-kpi-head">
+                          <span class="ff-dot-live" aria-hidden="true"></span>
+                          <h3>Comprobantes gestionados</h3>
+                          <div class="ff-chips" role="tablist" aria-label="Ventana temporal">
+                            <button class="ff-chip ff-active" aria-selected="true">Hora</button>
+                            <button class="ff-chip" aria-selected="false">Hoy</button>
+                            <button class="ff-chip" aria-selected="false">Semana</button>
+                          </div>
+                        </div>
+                        <div class="ff-kpi-body">
+                          <div class="ff-kpi-main">
+                            <div class="ff-kpi-value"><span id="ff-receipts-count">0</span></div>
+                            <div class="ff-kpi-sub">Procesados automáticamente</div>
+                            <div class="ff-progress" aria-hidden="true"><span id="ff-receipts-progress"
+                                style="width:0%"></span></div>
+                          </div>
+                          <div class="ff-kpi-side">
+                            <svg viewBox="0 0 100 28" class="ff-spark" aria-hidden="true">
+                              <polyline fill="none" stroke="currentColor" stroke-width="2"
+                                points="0,20 10,18 20,22 30,14 40,12 50,16 60,9 70,11 80,8 90,6 100,4" />
+                            </svg>
+                            <div class="ff-trend" id="ff-receipts-trend">▲ 0%</div>
+                          </div>
+                        </div>
+                        <ul class="ff-kpi-feed" aria-live="polite">
+                          <li>Recibido de Sofi (12:14)</li>
+                          <li>Validado transferencia de Lucas (12:12)</li>
+                        </ul>
+                      </div>
+                      <div class="ff-widget ff-kpi-card ff-output-target" id="ff-w-served">
+                        <div class="ff-kpi-head">
+                          <span class="ff-dot-live" aria-hidden="true"></span>
+                          <h3>Clientes atendidos</h3>
+                          <div class="ff-chips" role="tablist" aria-label="Ventana temporal">
+                            <button class="ff-chip ff-active" aria-selected="true">Hoy</button>
+                            <button class="ff-chip" aria-selected="false">Semana</button>
+                          </div>
+                        </div>
+                        <div class="ff-kpi-body">
+                          <div class="ff-kpi-main">
+                            <div class="ff-kpi-value"><span id="ff-served-count">0</span></div>
+                            <div class="ff-kpi-sub">Atendidos sin espera</div>
+                            <div class="ff-progress" aria-hidden="true"><span id="ff-served-progress"
+                                style="width:0%"></span></div>
+                          </div>
+                          <div class="ff-kpi-side">
+                            <svg viewBox="0 0 48 48" role="img" aria-label="Atención al cliente" class="ff-headset">
+                              <path fill="currentColor"
+                                d="M24 6c-8.3 0-15 6.7-15 15v9a5 5 0 0 0 5 5h4v-8h-6v-6c0-6.6 5.4-12 12-12s12 5.4 12 12v6h-6v8h4a5 5 0 0 0 5-5v-9c0-8.3-6.7-15-15-15z"
+                                opacity=".25" />
+                              <path fill="currentColor" d="M14 26h6v8h-6zM28 26h6v8h-6z" />
+                            </svg>
+                            <div class="ff-trend" id="ff-served-trend">▲ 0%</div>
+                          </div>
+                        </div>
+                        <div class="ff-kpi" style="justify-content:flex-end">
+                          <span class="ff-badge" id="ff-served-badge">+0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+              <svg id="ff-connectors" class="ff-svg-layer"></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- NUEVO ORDEN: Precios (tercera sección, fondo blanco, textos legibles) -->
     <section id="precios" class="py-20 bg-white text-gray-900">
@@ -1137,9 +1917,9 @@
         <p class="text-xl mb-8">Sumá a Fluxy a tu equipo y comenzá a vender más.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="https://wa.me/59892131808?text=Quiero%20informacion%20sobre%20Fluxy" target="_blank" rel="noopener"
-            class="bg-fluxy text-white px-8 py-3 rounded-full font-bold hover:bg-pink-600 transition">Hablanos por
-            Whatsapp</a>
+          <a href="https://wa.me/59892131808?text=Quiero%20probar%20Fluxy" target="_blank" rel="noopener"
+            class="bg-fluxy text-white px-8 py-3 rounded-full font-bold hover:bg-pink-600 transition">Hablá con Fluxy
+          </a>
           <a href="#precios"
             class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-900 transition">Ver
             planes</a>
@@ -1155,16 +1935,24 @@
 
         <!-- Logo + claim + redes -->
         <div class="text-center md:text-left">
-          <img src="./static/Color logo - no background.png" alt="Fluxy — plataforma de asistentes de IA para WhatsApp"
+          <img src="/static/Color logo - no background.png" alt="Fluxy — plataforma de asistentes de IA para WhatsApp"
             class="w-36 mx-auto md:mx-0 mb-4" loading="lazy" />
           <p class="mb-5 leading-snug">Tu equipo digital <br> en un solo click</p>
 
-          <div class="flex justify-center md:justify-start gap-4" aria-label="Redes sociales">            
-            <a href="https://www.instagram.com/fluxy.latam" aria-label="Instagram"
+          <div class="flex justify-center md:justify-start gap-4" aria-label="Redes sociales">
+            <a href="#" aria-label="Facebook"
+              class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
+              <i class="fab fa-facebook-f text-lg" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Twitter/X"
+              class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
+              <i class="fab fa-twitter text-lg" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Instagram"
               class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
               <i class="fab fa-instagram text-lg" aria-hidden="true"></i>
             </a>
-            <a href="https://www.linkedin.com/company/fluxy-latam/" aria-label="LinkedIn"
+            <a href="#" aria-label="LinkedIn"
               class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
               <i class="fab fa-linkedin-in text-lg" aria-hidden="true"></i>
             </a>
@@ -1411,7 +2199,7 @@
   `);
       }
       function renderFrame(title, chips) {
-        const avatarSrc = './static/cara_pulpo.png';
+        const avatarSrc = '/static/pulpo_fluxy.png';
         phone.innerHTML = `
     <div class="wa-header">
       <div class="avatar"><img src="${avatarSrc}" alt="Fluxy" class="w-full h-full object-cover"></div>
@@ -1497,15 +2285,223 @@
 
 
 
-
-
-
-
-
+    // Auto-altura del iframe (eliminado: ya no usamos iframe)
   </script>
 
 
 
+
+
+  <!-- Fluxy Flow (scoped) -->
+  <script>
+    (function () {
+      const root = document.getElementById('fluxy-flow');
+      if (!root) return;
+
+      const container = root.querySelector('#ff-diagram');
+      const coreTarget = root.querySelector('#ff-core');
+      const svgLayer = root.querySelector('#ff-connectors');
+      const sourceEls = Array.from(root.querySelectorAll('.ff-columna-entradas .ff-card'));
+      const outputEls = Array.from(root.querySelectorAll('.ff-columna-resultado .ff-output-target'));
+
+      const SVG_NS = "http://www.w3.org/2000/svg";
+      const XLINK_NS = "http://www.w3.org/1999/xlink";
+
+      function drawConnectors() {
+        if (!container || !coreTarget || !svgLayer) return;
+
+        svgLayer.innerHTML = '';
+        const cRect = container.getBoundingClientRect();
+        const tRect = coreTarget.getBoundingClientRect();
+
+        const x2 = tRect.left - cRect.left + tRect.width * 0.05;
+        const y2Mid = tRect.top - cRect.top + tRect.height / 2;
+
+        svgLayer.setAttribute('viewBox', `0 0 ${cRect.width} ${cRect.height}`);
+
+        // ENTRADAS -> CORE
+        sourceEls.forEach((el, i) => {
+          const sRect = el.getBoundingClientRect();
+          const x1 = sRect.right - cRect.left;
+          const y1 = sRect.top - cRect.top + sRect.height / 2;
+
+          const cx1 = x1 + (x2 - x1) * 0.35;
+          const cx2 = x1 + (x2 - x1) * 0.75;
+          const d = `M ${x1} ${y1} C ${cx1} ${y1}, ${cx2} ${y2Mid}, ${x2} ${y2Mid}`;
+          const id = `ff-in-${i}`;
+
+          const g = document.createElementNS(SVG_NS, 'g');
+          const path = document.createElementNS(SVG_NS, 'path');
+          path.setAttribute('id', id);
+          path.setAttribute('d', d);
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', '#f70776');
+          path.setAttribute('opacity', '0.35');
+          path.setAttribute('stroke-width', '1.8');
+          path.setAttribute('stroke-dasharray', '2 7');
+
+          const animDash = document.createElementNS(SVG_NS, 'animate');
+          animDash.setAttribute('attributeName', 'stroke-dashoffset');
+          animDash.setAttribute('from', '0'); animDash.setAttribute('to', '-90');
+          animDash.setAttribute('dur', '3s'); animDash.setAttribute('repeatCount', 'indefinite');
+          path.appendChild(animDash); g.appendChild(path);
+
+          const circle = document.createElementNS(SVG_NS, 'circle');
+          circle.setAttribute('r', '2.3'); circle.setAttribute('fill', '#f70776');
+          const animMotion = document.createElementNS(SVG_NS, 'animateMotion');
+          animMotion.setAttribute('dur', '2.6s'); animMotion.setAttribute('repeatCount', 'indefinite');
+          const mpath = document.createElementNS(SVG_NS, 'mpath');
+          mpath.setAttributeNS(XLINK_NS, 'xlink:href', `#${id}`);
+          animMotion.appendChild(mpath); circle.appendChild(animMotion); g.appendChild(circle);
+
+          svgLayer.appendChild(g);
+        });
+
+        // CORE -> SALIDAS
+        outputEls.forEach((el, i) => {
+          const oRect = el.getBoundingClientRect();
+          const xStart = tRect.left - cRect.left + tRect.width * 0.95;
+          const yStart = tRect.top - cRect.top + tRect.height / 2;
+          const xEnd = oRect.left - cRect.left;
+          const yEnd = oRect.top - cRect.top + oRect.height / 2;
+
+          const cx1 = xStart + (xEnd - xStart) * 0.35;
+          const cx2 = xStart + (xEnd - xStart) * 0.75;
+          const d = `M ${xStart} ${yStart} C ${cx1} ${yStart}, ${cx2} ${yEnd}, ${xEnd} ${yEnd}`;
+          const id = `ff-out-${i}`;
+
+          const g = document.createElementNS(SVG_NS, 'g');
+          const path = document.createElementNS(SVG_NS, 'path');
+          path.setAttribute('id', id);
+          path.setAttribute('d', d);
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', '#f70776');
+          path.setAttribute('opacity', '0.35');
+          path.setAttribute('stroke-width', '1.8');
+          path.setAttribute('stroke-dasharray', '2 7');
+          const animDash = document.createElementNS(SVG_NS, 'animate');
+          animDash.setAttribute('attributeName', 'stroke-dashoffset');
+          animDash.setAttribute('from', '0'); animDash.setAttribute('to', '-90');
+          animDash.setAttribute('dur', '3s'); animDash.setAttribute('repeatCount', 'indefinite');
+          path.appendChild(animDash); g.appendChild(path);
+
+          const circle = document.createElementNS(SVG_NS, 'circle');
+          circle.setAttribute('r', '2.3'); circle.setAttribute('fill', '#f70776');
+          const animMotion = document.createElementNS(SVG_NS, 'animateMotion');
+          animMotion.setAttribute('dur', '2.6s'); animMotion.setAttribute('repeatCount', 'indefinite');
+          const mpath = document.createElementNS(SVG_NS, 'mpath');
+          mpath.setAttributeNS(XLINK_NS, 'xlink:href', `#${id}`);
+          animMotion.appendChild(mpath); circle.appendChild(animMotion); g.appendChild(circle);
+
+          svgLayer.appendChild(g);
+        });
+      }
+
+      function startCalendarBlink() {
+        const grid = root.querySelector('#ff-calendar-grid'); if (!grid) return;
+        const cells = Array.from(grid.querySelectorAll('.ff-cal-cell'));
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        setInterval(() => {
+          const n = Math.max(1, Math.floor(Math.random() * 3));
+          for (let i = 0; i < n; i++) {
+            const idx = Math.floor(Math.random() * cells.length);
+            const cell = cells[idx];
+            cell.classList.add('blink');
+            setTimeout(() => cell.classList.remove('blink'), 600 + Math.random() * 400);
+          }
+        }, 900);
+      }
+
+      function randomAscCounter(el, { start = 0, minStep = 1, maxStep = 7, maxJumps = 60, jitter = 220, cap = null } = {}) {
+        if (!el) return;
+        let value = start, jumps = 0;
+        const tick = () => {
+          jumps++;
+          const step = Math.floor(Math.random() * (maxStep - minStep + 1)) + minStep;
+          value += step;
+          if (cap && value > cap) value = cap;
+          el.textContent = value.toLocaleString('es-UY');
+          if (jumps < maxJumps && (!cap || value < cap)) {
+            setTimeout(tick, Math.max(140, Math.random() * jitter));
+          }
+        };
+        tick();
+      }
+
+      const TARGETS = { receiptsHour: 250, servedDay: 600 };
+
+      function updateKpiProgress() {
+        const rc = root.querySelector('#ff-receipts-count');
+        const sp = root.querySelector('#ff-served-count');
+        const rpBar = root.querySelector('#ff-receipts-progress');
+        const svBar = root.querySelector('#ff-served-progress');
+        const rTrend = root.querySelector('#ff-receipts-trend');
+        const sTrend = root.querySelector('#ff-served-trend');
+
+        if (rc && rpBar) {
+          const v = Number((rc.textContent || '0').replace(/\./g, ''));
+          const pct = Math.max(0, Math.min(100, Math.round(100 * v / TARGETS.receiptsHour)));
+          rpBar.style.width = pct + '%';
+          if (rTrend) {
+            const up = Math.random() > .3;
+            rTrend.textContent = (up ? '▲ ' : '▼ ') + Math.floor(Math.random() * 12) + '%';
+            rTrend.classList.toggle('down', !up);
+          }
+        }
+
+        if (sp && svBar) {
+          const v = Number((sp.textContent || '0').replace(/\./g, ''));
+          const pct = Math.max(0, Math.min(100, Math.round(100 * v / TARGETS.servedDay)));
+          svBar.style.width = pct + '%';
+          if (sTrend) {
+            const up = Math.random() > .25;
+            sTrend.textContent = (up ? '▲ ' : '▼ ') + Math.floor(Math.random() * 10) + '%';
+            sTrend.classList.toggle('down', !up);
+          }
+        }
+      }
+
+      function startOutputs() {
+        startCalendarBlink();
+        randomAscCounter(root.querySelector('#ff-receipts-count'), { start: 0, minStep: 1, maxStep: 5, maxJumps: 60, jitter: 1250 });
+
+        const servedEl = root.querySelector('#ff-served-count');
+        const badgeEl = root.querySelector('#ff-served-badge');
+        if (servedEl) {
+          let last = 0;
+          const updateBadge = (val) => { if (badgeEl) badgeEl.textContent = `+${val - last}`; last = val; };
+          let value = 0, jumps = 0;
+          (function loop() {
+            jumps++;
+            const step = Math.floor(Math.random() * 6) + 1;
+            value += step;
+            servedEl.textContent = value.toLocaleString('es-UY');
+            updateBadge(value);
+            if (jumps < 150) setTimeout(loop, 120 + Math.random() * 220);
+            else if (badgeEl) badgeEl.textContent = `+${Math.max(1, Math.floor(Math.random() * 3))}`;
+          })();
+        }
+      }
+
+      function init() {
+        drawConnectors();
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(drawConnectors, 100);
+        });
+
+        const wrapper = root.querySelector('.ff-diagram-wrapper');
+        const stopChaosAfter = 2200;
+        setTimeout(() => { wrapper && wrapper.classList.remove('chaos'); }, stopChaosAfter);
+
+        setTimeout(startOutputs, stopChaosAfter + 100);
+        setInterval(updateKpiProgress, 1200);
+      }
+
+      init();
+    })();
+  </script>
 
 </body>
 
