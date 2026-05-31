@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-  <link rel="shortcut icon" href="/static/min_logo_color.ico" type="image/x-icon">
-  <link rel="icon" href="/static/min_logo_color.png" type="image/png">
+  <link rel="shortcut icon" href="./static/min_logo_color.ico" type="image/x-icon">
+  <link rel="icon" href="./static/min_logo_color.png" type="image/png">
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-23Y5TBLYTM"></script>
 <script>
@@ -24,594 +24,18 @@
   <!-- SEO -->
   <meta name="description"
     content="Fluxy es tu asistente de IA para WhatsApp: automatiza reservas, cobros, recordatorios y atención 24/7. Hecho para negocios en Uruguay, Argentina, Chile y Paraguay." />
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" href="./static/min_logo_color.ico" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Fluxy — Asistente de IA para WhatsApp" />
   <meta property="og:description"
     content="Automatizá tu atención por WhatsApp con el equipo pulpo digital: reservas, pagos y recordatorios 24/7." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-fluxy.jpg" />
+  <meta property="og:image" content="./static/hero-fluxy-dashboard.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Tailwind (para preview). En prod: compilar Tailwind y servir CSS propio -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Fluxy Flow (scoped) -->
-  <style>
-    /* ======= Fluxy Flow (scoped) ======= */
-    #fluxy-flow {
-      --color-bg-page: #f5f5f5;
-      --color-bg-light: #ffffff;
-      --color-text-dark: #1f2937;
-      --color-text-mid: #3f3f46;
-      --color-border: #e5e7eb;
-      --color-pink-main: #f70776;
-      --color-pink-dark: #c5065e;
-      --wa-green: #25D366;
-      --wa-bubble: #DCF8C6;
-      --wa-bubble-border: #BDEFB1;
-      --device-size: 260px;
-    }
-
-    #fluxy-flow .ff-main-container {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem 0;
-      position: relative;
-      overflow-x: hidden
-    }
-
-    #fluxy-flow .ff-diagram-wrapper {
-      width: 100%;
-      max-width: 72rem;
-      position: relative
-    }
-
-    #fluxy-flow .ff-glow-effect {
-      position: absolute;
-      inset: 0;
-      z-index: -10;
-      filter: blur(3rem);
-      opacity: .25;
-      background: radial-gradient(600px 300px at 50% 50%, rgba(247, 7, 118, .15), transparent 60%)
-    }
-
-    #fluxy-flow .ff-grid-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      align-items: center
-    }
-
-    @media (min-width:768px) {
-      #fluxy-flow .ff-grid-layout {
-        grid-template-columns: repeat(12, 1fr)
-      }
-
-      #fluxy-flow .ff-columna-entradas {
-        grid-column: span 3 / span 3;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start
-      }
-
-      #fluxy-flow .ff-columna-core {
-        grid-column: span 6 / span 6;
-        display: flex;
-        align-items: center;
-        justify-content: center
-      }
-
-      #fluxy-flow .ff-columna-resultado {
-        grid-column: span 3 / span 3;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end
-      }
-    }
-
-    #fluxy-flow .ff-card-grid {
-      display: grid;
-      gap: .75rem;
-      width: 100%;
-      max-width: 280px
-    }
-
-    #fluxy-flow .ff-card {
-      border-radius: 1rem;
-      padding: .85rem 1rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .08), 0 4px 6px -2px rgba(0, 0, 0, .04);
-      border: 1px solid var(--color-border);
-      background: var(--color-bg-light);
-      color: var(--color-text-dark);
-      position: relative;
-      transform-origin: left bottom
-    }
-
-    #fluxy-flow .ff-wa-bubble {
-      background: var(--wa-bubble);
-      border-color: var(--wa-bubble-border);
-      line-height: 1.35;
-      padding-right: 2.25rem
-    }
-
-    #fluxy-flow .ff-wa-bubble::after {
-      content: "";
-      position: absolute;
-      left: -8px;
-      bottom: 8px;
-      width: 0;
-      height: 0;
-      border-top: 8px solid var(--wa-bubble);
-      border-left: 8px solid transparent;
-      filter: drop-shadow(-1px 1px 0 rgba(0, 0, 0, .06))
-    }
-
-    #fluxy-flow .ff-wa-text {
-      font-size: .95rem
-    }
-
-    #fluxy-flow .ff-wa-meta {
-      display: flex;
-      gap: .4rem;
-      align-items: center;
-      font-size: .7rem;
-      color: #64748b;
-      margin-top: .35rem
-    }
-
-    #fluxy-flow .ff-wa-check {
-      position: absolute;
-      right: .6rem;
-      bottom: .6rem;
-      width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      background: var(--wa-green);
-      opacity: .75;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center
-    }
-
-    #fluxy-flow .ff-wa-check svg {
-      width: 10px;
-      height: 10px;
-      fill: #fff
-    }
-
-    #fluxy-flow .ff-core-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 230px
-    }
-
-    #fluxy-flow .ff-core-box {
-      aspect-ratio: 4/3;
-      border-radius: 1.5rem;
-      background: var(--color-pink-main);
-      border: 1px solid var(--color-pink-dark);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: #fff;
-      position: relative
-    }
-
-    #fluxy-flow .ff-core-grid-pattern {
-      position: absolute;
-      inset: 0;
-      opacity: .2;
-      background-image: linear-gradient(90deg, rgba(255, 255, 255, .18) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255, .18) 1px, transparent 1px);
-      background-size: 28px 28px
-    }
-
-    #fluxy-flow .ff-core-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center
-    }
-
-    #fluxy-flow .ff-brand-title {
-      font-size: clamp(2rem, 5vw, 2.75rem);
-      font-weight: 800;
-      letter-spacing: .06em;
-      color: #fff;
-      text-transform: uppercase;
-      line-height: 1.05;
-      text-align: center
-    }
-
-    #fluxy-flow .ff-brand-subtitle {
-      margin-top: .5rem;
-      font-size: clamp(.9rem, 2.2vw, 1.05rem);
-      font-weight: 600;
-      color: rgba(255, 255, 255, .9);
-      letter-spacing: .04em;
-      text-align: center
-    }
-
-    #fluxy-flow .ff-outputs-col {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1rem;
-      width: 100%
-    }
-
-    #fluxy-flow .ff-result-widgets {
-      display: grid;
-      gap: 12px;
-      width: 100%;
-      max-width: 300px
-    }
-
-    #fluxy-flow .ff-widget {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 1rem;
-      padding: .9rem;
-      box-shadow: 0 12px 18px -8px rgba(0, 0, 0, .12)
-    }
-
-    #fluxy-flow .ff-widget-title {
-      margin: 0 0 .5rem 0;
-      font-size: .9rem;
-      color: #374151;
-      letter-spacing: .02em;
-      display: flex;
-      align-items: center;
-      gap: .4rem
-    }
-
-    #fluxy-flow .ff-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--color-pink-main);
-      opacity: .7
-    }
-
-    #fluxy-flow .ff-calendar-header {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      margin-bottom: 6px
-    }
-
-    #fluxy-flow .ff-cal-day {
-      text-align: center;
-      font-size: .75rem;
-      font-weight: 700;
-      color: #6b7280;
-      letter-spacing: .04em;
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: .5rem;
-      padding: .35rem 0
-    }
-
-    #fluxy-flow .ff-calendar {
-      --cols: 7;
-      --rows: 5;
-      display: grid;
-      grid-template-columns: repeat(var(--cols), 1fr);
-      gap: 6px
-    }
-
-    #fluxy-flow .ff-cal-cell {
-      aspect-ratio: 1/1;
-      border-radius: .5rem;
-      border: 1px dashed #e5e7eb;
-      background: #fafafa;
-      position: relative;
-      overflow: hidden
-    }
-
-    #fluxy-flow .ff-cal-cell.blink {
-      background: rgba(247, 7, 118, .12);
-      box-shadow: 0 0 0 2px rgba(247, 7, 118, .35) inset
-    }
-
-    #fluxy-flow .ff-cal-cell.blink::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(247, 7, 118, .32);
-      animation: ff-cal-flash .55s ease-out forwards
-    }
-
-    @keyframes ff-cal-flash {
-      0% {
-        opacity: 0
-      }
-
-      30% {
-        opacity: 1
-      }
-
-      100% {
-        opacity: 0
-      }
-    }
-
-    #fluxy-flow .ff-kpi-card {
-      display: flex;
-      flex-direction: column;
-      gap: .75rem
-    }
-
-    #fluxy-flow .ff-kpi-head {
-      display: flex;
-      align-items: center;
-      gap: .5rem
-    }
-
-    #fluxy-flow .ff-chips {
-      margin-left: auto;
-      display: flex;
-      gap: .25rem
-    }
-
-    #fluxy-flow .ff-chip {
-      font-size: .7rem;
-      padding: .15rem .5rem;
-      border: 1px solid #e5e7eb;
-      border-radius: .6rem;
-      background: #fff;
-      color: #334155;
-      cursor: default
-    }
-
-    #fluxy-flow .ff-chip.ff-active {
-      border-color: var(--color-pink-main);
-      color: var(--color-pink-dark);
-      background: rgba(247, 7, 118, .08)
-    }
-
-    #fluxy-flow .ff-dot-live {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--color-pink-main);
-      box-shadow: 0 0 0 0 rgba(247, 7, 118, .5);
-      animation: ff-pulse 1.6s infinite
-    }
-
-    @keyframes ff-pulse {
-      to {
-        box-shadow: 0 0 0 14px rgba(247, 7, 118, 0)
-      }
-    }
-
-    #fluxy-flow .ff-kpi-body {
-      display: flex;
-      align-items: center;
-      gap: .9rem
-    }
-
-    #fluxy-flow .ff-kpi-main {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: .35rem
-    }
-
-    #fluxy-flow .ff-kpi-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #0f172a
-    }
-
-    #fluxy-flow .ff-kpi-sub {
-      font-size: .75rem;
-      color: #64748b
-    }
-
-    #fluxy-flow .ff-progress {
-      height: 8px;
-      background: #f3f4f6;
-      border-radius: 999px;
-      overflow: hidden
-    }
-
-    #fluxy-flow .ff-progress>span {
-      display: block;
-      height: 100%;
-      background: var(--color-pink-main);
-      width: 0%;
-      transition: width .6s ease
-    }
-
-    #fluxy-flow .ff-kpi-side {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: .25rem
-    }
-
-    #fluxy-flow .ff-spark {
-      width: 90px;
-      height: 28px;
-      color: rgba(247, 7, 118, .7)
-    }
-
-    #fluxy-flow .ff-trend {
-      font-size: .75rem;
-      color: #16a34a
-    }
-
-    #fluxy-flow .ff-trend.down {
-      color: #ef4444
-    }
-
-    #fluxy-flow .ff-kpi-feed {
-      margin: .25rem 0 0 0;
-      padding: 0;
-      list-style: none;
-      font-size: .75rem;
-      color: #475569;
-      display: grid;
-      gap: .2rem
-    }
-
-    #fluxy-flow .ff-kpi-feed li {
-      display: flex;
-      align-items: center;
-      gap: .4rem
-    }
-
-    #fluxy-flow .ff-kpi-feed li::before {
-      content: "✔";
-      color: #16a34a;
-      font-weight: 700
-    }
-
-    #fluxy-flow .ff-badge {
-      font-weight: 700;
-      font-size: 1.2rem;
-      padding: .2rem .55rem;
-      border-radius: .7rem;
-      background: rgba(247, 7, 118, .12);
-      color: var(--color-pink-dark);
-      border: 1px solid rgba(247, 7, 118, .25)
-    }
-
-    #fluxy-flow .ff-svg-layer {
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible
-    }
-
-    @keyframes ff-bubble-in {
-      0% {
-        transform: translateX(-8px) translateY(12px) scale(.96) rotate(-1deg);
-        opacity: 0
-      }
-
-      60% {
-        transform: translateX(2px) translateY(-4px) scale(1.02) rotate(.6deg);
-        opacity: 1
-      }
-
-      100% {
-        transform: translateX(0) translateY(0) scale(1) rotate(0)
-      }
-    }
-
-    @keyframes ff-shake {
-
-      0%,
-      100% {
-        transform: translateX(0) rotate(0)
-      }
-
-      20% {
-        transform: translateX(-2px) rotate(-.6deg)
-      }
-
-      40% {
-        transform: translateX(2px) rotate(.6deg)
-      }
-
-      60% {
-        transform: translateX(-1px) rotate(-.3deg)
-      }
-
-      80% {
-        transform: translateX(1px) rotate(.3deg)
-      }
-    }
-
-    @keyframes ff-notif-pop {
-      0% {
-        transform: scale(0)
-      }
-
-      60% {
-        transform: scale(1.15)
-      }
-
-      100% {
-        transform: scale(1)
-      }
-    }
-
-    @keyframes ff-pulse-dot {
-      0% {
-        opacity: 0;
-        transform: scale(.8)
-      }
-
-      50% {
-        opacity: .8;
-        transform: scale(1)
-      }
-
-      100% {
-        opacity: 0;
-        transform: scale(.8)
-      }
-    }
-
-    #fluxy-flow .chaos .ff-wa-bubble {
-      animation: ff-bubble-in .45s cubic-bezier(.2, .9, .25, 1) both, ff-shake .55s ease-in-out .5s 2;
-    }
-
-    #fluxy-flow .chaos #ff-card-1.ff-wa-bubble {
-      animation-delay: .05s, .55s
-    }
-
-    #fluxy-flow .chaos #ff-card-2.ff-wa-bubble {
-      animation-delay: .15s, .65s
-    }
-
-    #fluxy-flow .chaos #ff-card-3.ff-wa-bubble {
-      animation-delay: .25s, .75s
-    }
-
-    #fluxy-flow .chaos #ff-card-4.ff-wa-bubble {
-      animation-delay: .35s, .85s
-    }
-
-    #fluxy-flow .chaos #ff-card-5.ff-wa-bubble {
-      animation-delay: .45s, .95s
-    }
-
-    #fluxy-flow .chaos .ff-card::before {
-      content: "";
-      position: absolute;
-      right: -14px;
-      top: 6px;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--wa-green);
-      opacity: 0;
-      animation: ff-pulse-dot 1.2s ease-out .6s 2;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      #fluxy-flow .chaos .ff-wa-bubble,
-      #fluxy-flow .chaos .ff-card::before {
-        animation: none !important
-      }
-
-      #fluxy-flow .ff-cal-cell.blink::after {
-        animation: none !important
-      }
-    }
-  </style>
-
   <script>
     tailwind.config = {
       theme: {
@@ -631,29 +55,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* Animaciones */
-    .octopus-wave {
-      animation: wave 8s ease-in-out infinite;
-    }
-
     .octopus-bounce {
       animation: bounce 2s ease infinite;
-    }
-
-    @keyframes wave {
-
-      0%,
-      100% {
-        transform: rotate(0)
-      }
-
-      25% {
-        transform: rotate(5deg)
-      }
-
-      75% {
-        transform: rotate(-5deg)
-      }
     }
 
     @keyframes bounce {
@@ -675,9 +78,658 @@
       box-shadow: 0 20px 25px -5px rgba(247, 7, 118, .18), 0 10px 10px -5px rgba(247, 7, 118, .08);
     }
 
+    .octo-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(247, 7, 118, .08);
+      background:
+        radial-gradient(circle at top right, rgba(247, 7, 118, .08), transparent 34%),
+        linear-gradient(180deg, #fff, #fff8fb);
+    }
+
+    .octo-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -35% auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--octo-accent) 12%, white);
+      opacity: .9;
+      filter: blur(2px);
+    }
+
+    .octo-scene {
+      position: relative;
+      height: 190px;
+      margin-bottom: 1.25rem;
+      border-radius: 1.25rem;
+      background:
+        radial-gradient(circle at 50% 70%, color-mix(in srgb, var(--octo-accent) 32%, transparent), transparent 34%),
+        radial-gradient(circle at 22% 35%, rgba(255, 255, 255, .18), transparent 20%),
+        linear-gradient(180deg, #100d18, #251226 58%, #3d1930);
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
+    }
+
+    .octo-scene::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -28% -10%;
+      height: 100px;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .12), transparent 70%);
+      opacity: .7;
+      pointer-events: none;
+    }
+
+    .octo-glow {
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      width: 150px;
+      height: 110px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--octo-accent) 70%, white 10%), transparent 70%);
+      filter: blur(26px);
+      opacity: .95;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .octo-prop {
+      position: absolute;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      border-radius: 999px;
+      padding: .4rem .7rem;
+      background: rgba(255, 255, 255, .92);
+      color: #334155;
+      font-size: .72rem;
+      font-weight: 700;
+      box-shadow: 0 10px 20px -12px rgba(15, 23, 42, .35);
+      border: 1px solid rgba(15, 23, 42, .06);
+    }
+
+    .octo-prop strong {
+      color: #111827;
+    }
+
+    .octo-prop.left {
+      top: 1rem;
+      left: 1rem;
+    }
+
+    .octo-prop.right {
+      top: 1.1rem;
+      right: 1rem;
+    }
+
+    .octo-prop.bottom {
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .octo-avatar {
+      --body: #ff168f;
+      position: absolute;
+      left: 50%;
+      bottom: .75rem;
+      transform: translateX(-50%);
+      width: 128px;
+      height: 128px;
+      z-index: 2;
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, .32));
+    }
+
+    .octo-head {
+      position: absolute;
+      left: 50%;
+      top: 12px;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 72px;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .55), transparent 18%),
+        linear-gradient(180deg, color-mix(in srgb, var(--body) 84%, white 16%), var(--body));
+      border-radius: 55px 55px 38px 38px;
+      box-shadow:
+        inset 0 -10px 0 rgba(255, 255, 255, .18),
+        inset 0 -18px 22px rgba(0, 0, 0, .08);
+    }
+
+    .octo-headset-band {
+      position: absolute;
+      left: 50%;
+      top: 2px;
+      transform: translateX(-50%);
+      width: 104px;
+      height: 58px;
+      border: 8px solid #24131f;
+      border-bottom: 0;
+      border-radius: 999px 999px 0 0;
+      z-index: 5;
+      opacity: .95;
+    }
+
+    .octo-headset-ear {
+      position: absolute;
+      top: 35px;
+      width: 24px;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #2f1e29, #120b12);
+      z-index: 5;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .05);
+    }
+
+    .octo-headset-ear.left {
+      left: 16px;
+    }
+
+    .octo-headset-ear.right {
+      right: 16px;
+    }
+
+    .octo-mic {
+      position: absolute;
+      right: 16px;
+      top: 66px;
+      width: 34px;
+      height: 4px;
+      background: #1a1118;
+      border-radius: 999px;
+      transform: rotate(30deg);
+      z-index: 6;
+    }
+
+    .octo-mic::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: -4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #23131d;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .04);
+    }
+
+    .octo-cheek {
+      position: absolute;
+      top: 42px;
+      width: 13px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .45);
+    }
+
+    .octo-cheek.left {
+      left: 22px;
+    }
+
+    .octo-cheek.right {
+      right: 22px;
+    }
+
+    .octo-eye {
+      position: absolute;
+      top: 28px;
+      width: 12px;
+      height: 18px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .octo-eye.left {
+      left: 28px;
+    }
+
+    .octo-eye.right {
+      right: 28px;
+    }
+
+    .octo-eye::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .95);
+    }
+
+    .octo-mouth {
+      position: absolute;
+      left: 50%;
+      top: 51px;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 9px;
+      border-bottom: 3px solid #111827;
+      border-radius: 0 0 18px 18px;
+    }
+
+    .octo-tentacle {
+      position: absolute;
+      bottom: 8px;
+      width: 22px;
+      height: 38px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--body) 90%, white 10%), var(--body));
+      border-radius: 20px;
+      transform-origin: top center;
+      box-shadow:
+        inset 0 -7px 0 rgba(255, 255, 255, .18),
+        inset 0 -14px 18px rgba(0, 0, 0, .08);
+    }
+
+    .octo-t1 {
+      left: 10px;
+      transform: rotate(18deg);
+    }
+
+    .octo-t2 {
+      left: 31px;
+      transform: rotate(7deg);
+    }
+
+    .octo-t3 {
+      left: 51px;
+    }
+
+    .octo-t4 {
+      right: 31px;
+      transform: rotate(-7deg);
+    }
+
+    .octo-t5 {
+      right: 10px;
+      transform: rotate(-18deg);
+    }
+
+    .octo-badge {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--octo-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px -12px rgba(15, 23, 42, .35);
+      border: 1px solid rgba(15, 23, 42, .06);
+      font-size: .95rem;
+    }
+
+    .octo-scene-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .octo-device {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      padding: .6rem .65rem;
+      border-radius: 1rem;
+      background: linear-gradient(180deg, rgba(255, 244, 249, .98), rgba(255, 233, 243, .94));
+      color: #351322;
+      border: 1px solid rgba(255, 255, 255, .24);
+      box-shadow: 0 18px 34px -22px rgba(0, 0, 0, .65);
+    }
+
+    .octo-device.phone {
+      left: 12px;
+      bottom: 14px;
+      width: 72px;
+      transform: rotate(-10deg);
+    }
+
+    .octo-device.pad {
+      right: 10px;
+      bottom: 18px;
+      width: 80px;
+      transform: rotate(10deg);
+    }
+
+    .octo-device.note {
+      left: 12px;
+      bottom: 18px;
+      width: 86px;
+      transform: rotate(-6deg);
+    }
+
+    .octo-device-tag {
+      font-size: .6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #7a294d;
+    }
+
+    .octo-device-line {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .octo-sticker {
+      position: absolute;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      padding: .55rem .7rem;
+      border-radius: 1rem;
+      background: linear-gradient(180deg, #ff4ca1, #ff198c);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      box-shadow: 0 18px 28px -18px rgba(0, 0, 0, .55);
+      border: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .octo-sticker.s-right {
+      right: 14px;
+      top: 88px;
+      transform: rotate(11deg);
+    }
+
+    .octo-sticker.s-left {
+      left: 18px;
+      top: 96px;
+      transform: rotate(-10deg);
+    }
+
+    .wa-cube {
+      position: absolute;
+      z-index: 3;
+      width: 32px;
+      height: 32px;
+      border-radius: .65rem;
+      background: linear-gradient(180deg, #56d944, #30b325);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .55);
+      border: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .wa-cube.small {
+      width: 24px;
+      height: 24px;
+      font-size: .7rem;
+      border-radius: .5rem;
+    }
+
+    .wa-cube.c1 {
+      left: 18px;
+      top: 72px;
+      transform: rotate(-18deg);
+    }
+
+    .wa-cube.c2 {
+      right: 18px;
+      top: 64px;
+      transform: rotate(11deg);
+    }
+
+    .wa-cube.c3 {
+      left: 42px;
+      bottom: 28px;
+      transform: rotate(14deg);
+    }
+
+    .wa-cube.c4 {
+      right: 40px;
+      bottom: 34px;
+      transform: rotate(-12deg);
+    }
+
+    .octo-card .octo-title {
+      color: #1f2937;
+    }
+
+    .octo-card .octo-sub {
+      color: #6b7280;
+    }
+
+    .octo-carousel-shell {
+      position: relative;
+    }
+
+    .octo-carousel {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: .25rem 4.25rem 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .octo-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .octo-slide {
+      min-width: min(100%, 24rem);
+      max-width: 24rem;
+      scroll-snap-align: start;
+      flex: 0 0 min(100%, 24rem);
+    }
+
+    .octo-carousel-controls {
+      position: absolute;
+      inset: 50% 0 auto 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .octo-carousel-btn {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      border: 1px solid rgba(17, 24, 39, .1);
+      background: #fff;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px -16px rgba(15, 23, 42, .45);
+      transition: transform .2s ease, background-color .2s ease;
+      pointer-events: auto;
+    }
+
+    .octo-carousel-btn:hover {
+      transform: translateY(-2px);
+      background: #fff7fa;
+    }
+
+    .octo-carousel-btn.prev {
+      margin-left: -.2rem;
+    }
+
+    .octo-carousel-btn.next {
+      margin-right: -.2rem;
+    }
+
+    @media (max-width: 767px) {
+      .octo-carousel {
+        padding-inline: .15rem;
+      }
+
+      .octo-carousel-controls {
+        position: static;
+        transform: none;
+        justify-content: center;
+        gap: .75rem;
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    .octo-anfitrion {
+      --octo-accent: #f70776;
+    }
+
+    .octo-anfitrion .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-anfitrion .octo-scene::before {
+      display: none;
+    }
+
+    .octo-anfitrion .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.12);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
+    .octo-ventas {
+      --octo-accent: #2563eb;
+    }
+
+    .octo-ventas .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-ventas .octo-scene::before {
+      display: none;
+    }
+
+    .octo-ventas .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.14);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
+    .octo-reservas {
+      --octo-accent: #16a34a;
+    }
+
+    .octo-reservas .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-reservas .octo-scene::before {
+      display: none;
+    }
+
+    .octo-reservas .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.12);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
+    .octo-eventos {
+      --octo-accent: #f70776;
+    }
+
+    .octo-eventos .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-eventos .octo-scene::before {
+      display: none;
+    }
+
+    .octo-eventos .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.12);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
+    .octo-finanzas {
+      --octo-accent: #7c3aed;
+    }
+
+    .octo-finanzas .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-finanzas .octo-scene::before {
+      display: none;
+    }
+
+    .octo-finanzas .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.12);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
+    .octo-rrhh {
+      --octo-accent: #ca8a04;
+    }
+
+    .octo-rrhh .octo-scene {
+      padding: 0;
+      background:
+        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
+        linear-gradient(180deg, #110a17, #241124 58%, #311225);
+    }
+
+    .octo-rrhh .octo-scene::before {
+      display: none;
+    }
+
+    .octo-rrhh .octo-scene-image {
+      border-radius: .9rem;
+      object-fit: cover;
+      transform: scale(1.12);
+      transform-origin: center;
+      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
+    }
+
     @media (prefers-reduced-motion: reduce) {
 
-      .octopus-wave,
       .octopus-bounce {
         animation: none !important;
       }
@@ -981,29 +1033,42 @@
     }
 
     /* Cards del grid (más cuadradas y legibles) */
+    #casos .cases-copy {
+      max-width: 34rem;
+    }
+
+    #casos .cases-heading {
+      line-height: 1.08;
+      text-wrap: balance;
+    }
+
     .case-item {
+      flex: 0 0 calc((100% - 1rem) / 2);
+      min-width: 0;
       border-radius: 16px;
-      padding: 18px 16px;
-      text-align: center;
+      padding: 1rem;
+      text-align: left;
       background: rgba(255, 255, 255, .04);
       border: 1px solid rgba(255, 255, 255, .12);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      min-height: 140px;
+      transition: box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+      min-height: 132px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 8px;
+      scroll-snap-align: start;
+      touch-action: pan-x;
     }
 
     .case-item:hover {
-      transform: translateY(-3px);
+      background: rgba(255, 255, 255, .065);
       border-color: rgba(247, 7, 118, .6);
       box-shadow: 0 20px 50px -20px rgba(247, 7, 118, .45);
     }
 
     .case-item[aria-current="true"] {
-      outline: 2px solid rgba(247, 7, 118, .85);
-      outline-offset: 0;
+      outline: none;
+      border-color: rgba(247, 7, 118, .85);
       box-shadow: 0 24px 60px -24px rgba(247, 7, 118, .6);
     }
 
@@ -1016,15 +1081,214 @@
       font-weight: 700;
       font-size: 15px;
       color: #fff;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
     }
 
     .case-sub {
       font-size: 12px;
       color: rgba(255, 255, 255, .7);
+      line-height: 1.35;
+    }
+
+    .cases-lane-controls {
+      display: flex;
+      justify-content: flex-start;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+
+    .cases-lane-btn {
+      color: #111827;
+      background: #fff;
+      border-color: rgba(255, 255, 255, .7);
+      flex: 0 0 3rem;
+    }
+
+    .cases-lane-btn:hover {
+      background: #FFDE21;
+      transform: translateY(-1px);
+    }
+
+    .cases-marquee {
+      display: none;
+    }
+
+    .cases-mobile-title {
+      display: none;
+    }
+
+    #casesLeft.cases-swimlane {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: .25rem;
+      padding: .65rem .25rem 1.1rem;
+      margin-inline: -.25rem;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    #casesLeft::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      #casos {
+        padding-top: 4.5rem;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(247, 7, 118, .26), transparent 34%),
+          radial-gradient(circle at 18% 46%, rgba(168, 85, 247, .18), transparent 30%),
+          radial-gradient(circle at 92% 72%, rgba(255, 222, 33, .09), transparent 26%),
+          linear-gradient(180deg, #07050a 0%, #120711 52%, #07050a 100%);
+      }
+
+      #casos .cases-mobile-title {
+        display: block;
+        max-width: 20rem;
+        margin: 0 auto 1.55rem;
+        text-align: center;
+        color: #fff;
+        font-size: clamp(2.05rem, 8.8vw, 2.45rem);
+        font-weight: 800;
+        line-height: 1.05;
+        text-shadow: 0 0 28px rgba(247, 7, 118, .42);
+        position: relative;
+        z-index: 2;
+      }
+
+      #casos .cases-mobile-title::after {
+        content: "";
+        display: block;
+        width: 4.5rem;
+        height: 3px;
+        margin: 1rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #f70776, #FFDE21);
+        box-shadow: 0 0 24px rgba(247, 7, 118, .65);
+      }
+
+      #casos .cases-copy {
+        display: none;
+      }
+
+      #casos .cases-copy p {
+        display: none;
+      }
+
+      .cases-lane-controls,
+      #casesLeft.cases-swimlane {
+        display: none !important;
+      }
+
+      .cases-marquee {
+        display: grid;
+        gap: .85rem;
+        margin: 0 -1.5rem;
+        padding: 1.1rem 0;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .02)),
+          radial-gradient(circle at 50% 50%, rgba(247, 7, 118, .13), transparent 58%);
+        border-block: 1px solid rgba(255, 255, 255, .08);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .06),
+          inset 0 -1px 0 rgba(255, 255, 255, .04),
+          0 26px 70px -54px rgba(247, 7, 118, .95);
+        mask-image: linear-gradient(90deg, transparent 0%, black 11%, black 89%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 11%, black 89%, transparent 100%);
+      }
+
+      .cases-marquee-track {
+        display: flex;
+        gap: .75rem;
+        width: max-content;
+        animation: cases-marquee 24s linear infinite;
+        will-change: transform;
+      }
+
+      .cases-marquee-track:nth-child(2) {
+        animation-duration: 29s;
+        animation-direction: reverse;
+      }
+
+      .cases-marquee-track:nth-child(3) {
+        animation-duration: 34s;
+      }
+
+      .case-marquee-chip {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: .58rem;
+        min-height: 3.15rem;
+        padding: .68rem 1rem .68rem .72rem;
+        border-radius: 999px;
+        color: rgba(255, 255, 255, .88);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .035)) padding-box,
+          linear-gradient(135deg, rgba(247, 7, 118, .62), rgba(168, 85, 247, .36), rgba(255, 222, 33, .24)) border-box;
+        border: 1px solid transparent;
+        box-shadow: 0 18px 42px -35px rgba(247, 7, 118, .9), inset 0 1px 0 rgba(255, 255, 255, .12);
+        backdrop-filter: blur(14px);
+        font-weight: 500;
+        font-size: .93rem;
+        letter-spacing: .01em;
+        white-space: nowrap;
+      }
+
+      .cases-marquee-track:nth-child(2) .case-marquee-chip {
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03)) padding-box,
+          linear-gradient(135deg, rgba(255, 222, 33, .28), rgba(247, 7, 118, .54), rgba(255, 255, 255, .12)) border-box;
+      }
+
+      .case-marquee-chip .chip-emoji {
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 999px;
+        display: inline-grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 35% 25%, rgba(255, 255, 255, .2), transparent 38%),
+          rgba(255, 255, 255, .085);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .09);
+        font-size: 1rem;
+        line-height: 1;
+        flex: 0 0 auto;
+      }
+
+      @keyframes cases-marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cases-marquee {
+          overflow-x: auto;
+          padding-inline: 1.5rem;
+          mask-image: none;
+          -webkit-mask-image: none;
+        }
+
+        .cases-marquee-track {
+          animation: none;
+        }
+      }
+
     }
 
     /* Ajustar alineación y proximidad */
-    #casos .grid {
+    #casos .cases-layout {
       align-items: center;
     }
 
@@ -1215,6 +1479,92 @@
       }
     }
 
+    @media (max-width:767px) {
+      #casos .phone-col {
+        display: none;
+      }
+
+      #casos .phone-top {
+        position: static;
+      }
+    }
+
+    .case-phone-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+      background: rgba(2, 6, 23, .82);
+      backdrop-filter: blur(10px);
+    }
+
+    .case-phone-modal.hidden {
+      display: none;
+    }
+
+    .case-phone-dialog {
+      width: min(100%, 26rem);
+      max-height: none;
+      overflow: visible;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: linear-gradient(180deg, rgba(15, 23, 42, .98), rgba(10, 10, 16, .98));
+      box-shadow: 0 24px 90px -28px rgba(0, 0, 0, .9);
+      padding: 1rem 1rem 1.25rem;
+    }
+
+    .case-phone-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .8rem;
+    }
+
+    .case-phone-title {
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .case-phone-close {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    #casos .case-phone-modal .phone-col {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+    }
+
+    .case-phone-modal .phone-wa-inner {
+      width: min(78vw, 300px) !important;
+      height: min(calc(100dvh - 9rem), 570px) !important;
+      transform: none;
+      transform-origin: top center;
+    }
+
+    @media (min-width:768px) {
+      .case-phone-modal {
+        display: none !important;
+      }
+    }
+
     @media (min-width:1280px) {
       #casos .cases-layout {
         column-gap: clamp(8rem, 12vw, 18rem);
@@ -1254,6 +1604,105 @@
     body {
       overflow-x: hidden;
     }
+
+    .hero-immersive {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 7, .98) 0%, rgba(5, 5, 7, .92) 29%, rgba(5, 5, 7, .52) 48%, rgba(5, 5, 7, .1) 100%),
+        linear-gradient(180deg, rgba(5, 5, 7, .3) 0%, rgba(5, 5, 7, .08) 54%, rgba(5, 5, 7, .62) 100%),
+        url("./static/hero-fluxy-dashboard.png"),
+        linear-gradient(135deg, #050507 0%, #120812 42%, #251027 100%);
+      background-size: cover, cover, auto 118%, cover;
+      background-position: center, center, right center, center;
+      background-repeat: no-repeat;
+      isolation: isolate;
+      min-height: min(820px, calc(100vh - 72px));
+      display: flex;
+      align-items: center;
+      padding: 5rem 0;
+    }
+
+    .hero-immersive::before,
+    .hero-immersive::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-immersive::before {
+      background:
+        radial-gradient(circle at 82% 22%, rgba(247, 7, 118, .28), transparent 22%),
+        radial-gradient(circle at 74% 64%, rgba(168, 85, 247, .18), transparent 28%),
+        linear-gradient(to bottom, rgba(5, 5, 7, .05), rgba(5, 5, 7, .55));
+      opacity: .85;
+    }
+
+    .hero-immersive::after {
+      background:
+        linear-gradient(90deg, #050507 0%, rgba(5, 5, 7, .92) 16%, rgba(5, 5, 7, .06) 53%, rgba(5, 5, 7, .2) 100%),
+        radial-gradient(ellipse at 88% 50%, transparent 38%, rgba(5, 5, 7, .42) 76%, rgba(5, 5, 7, .82) 100%);
+      opacity: .9;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(14px);
+      opacity: .75;
+      pointer-events: none;
+    }
+
+    .hero-orb.orb-left {
+      width: 320px;
+      height: 320px;
+      left: -110px;
+      top: 90px;
+      background: radial-gradient(circle, rgba(255, 0, 128, .55), rgba(255, 0, 128, 0));
+    }
+
+    .hero-orb.orb-right {
+      width: 360px;
+      height: 360px;
+      right: -110px;
+      top: 50px;
+      background: radial-gradient(circle, rgba(168, 85, 247, .45), rgba(168, 85, 247, 0));
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 3;
+      max-width: 40rem;
+    }
+
+    @media (max-width: 767px) {
+      .hero-immersive {
+        min-height: auto;
+        align-items: flex-start;
+        padding-top: 4.75rem;
+        padding-bottom: 19rem;
+        background:
+          linear-gradient(180deg, rgba(5, 5, 7, .98) 0%, rgba(5, 5, 7, .92) 45%, rgba(5, 5, 7, .34) 72%, rgba(5, 5, 7, .74) 100%),
+          url("./static/hero-fluxy-dashboard.png"),
+          linear-gradient(135deg, #050507 0%, #160817 56%, #251027 100%);
+        background-size: cover, 185% auto, cover;
+        background-position: center, 62% bottom, center;
+        background-repeat: no-repeat;
+      }
+
+      .hero-orb.orb-left {
+        width: 220px;
+        height: 220px;
+        left: -80px;
+      }
+
+      .hero-orb.orb-right {
+        width: 240px;
+        height: 240px;
+        right: -90px;
+      }
+    }
   </style>
 
 </head>
@@ -1269,35 +1718,18 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <a href="#" class="flex items-center" aria-label="Inicio Fluxy">
-            <img src="/static/Color logo - no background.png" alt="Logo Fluxy" class="h-10 w-auto block" />
+            <img src="./static/logo-header-v3.png" alt="Logo Fluxy" class="h-6 w-auto block" />
           </a>
         </div>
 
-        <nav class="hidden md:flex items-center space-x-8" aria-label="Secciones del sitio">
-          <a href="#caracteristicas" class="text-gray-700 hover:text-fluxy">Quienes somos</a>
-          <a href="#casos" class="text-gray-700 hover:text-fluxy">Soluciones</a>
-          <a href="#precios" class="text-gray-700 hover:text-fluxy">Planes</a>
-
-        </nav>
-
         <div class="hidden sm:flex items-center space-x-3">
-          <a href="https://wa.me/59892131808?text=Hola!%20Fluxy%20Como%20estás?" target="_blank" rel="noopener"
-            class="bg-fluxy text-white px-5 py-2 rounded-full font-medium hover:bg-pink-600 transition">Probá como
-            funciona</a>
-
-          <a href="https://wa.me/59892131808?text=Hola!%20Fluxy%20Como%20estás?"
+          <a href="https://wa.me/59892131808?text=Me%20interesa%20Fluxy"
             target="_blank" rel="noopener"
-            class="border-2 border-fluxy text-fluxy px-5 py-2 rounded-full font-medium hover:bg-fluxy hover:text-white transition">Probalo
+            class="bg-yellow-400 text-gray-900 px-5 py-2 rounded-full font-medium hover:bg-yellow-300 transition">Probalo
             gratis 30 días</a>
 
         </div>
 
-        <button class="md:hidden focus:outline-none" id="menuBtn" aria-controls="mobileMenu" aria-expanded="false"
-          aria-label="Abrir menú">
-          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
       </div>
 
 
@@ -1306,9 +1738,11 @@
 
   <main id="contenido">
     <!-- Hero -->
-    <section class="bg-gradient-to-br from-fluxy to-pink-500 text-white py-20">
-      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-10 md:mb-0">
+    <section class="hero-immersive text-white">
+      <span class="hero-orb orb-left" aria-hidden="true"></span>
+      <span class="hero-orb orb-right" aria-hidden="true"></span>
+      <div class="w-full max-w-7xl mx-auto px-6 relative z-[1]">
+        <div class="hero-copy">
           <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
             Fluxy gestiona tu
             <span class="text-yellow-400">WhatsApp</span>
@@ -1316,26 +1750,16 @@
           </h1>
 
           <p class="text-xl mb-8">
-            Responde consultas, gestiona reserva, procesa comprobantes, envía recordatorios y mucho más!
+            <strong>Automatizá el WhatsApp de tu negocio</strong> para atender clientes al instante, tomar pedidos y reservas, responder preguntas frecuentes y <strong>estar disponible 24/7</strong>.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
-            <a href="https://wa.me/59892131808"
+            <a href="https://wa.me/59892131808?text=Me%20interesa%20Fluxy"
               target="_blank" rel="noopener"
-              class="bg-white text-fluxy px-8 py-3 rounded-full font-bold text-center hover:bg-gray-100 transition">Probalo
+              class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-bold text-center hover:bg-yellow-300 transition">Probalo
               gratis 30 días</a>
-             <a href="https://wa.me/59892131808?text=Hola!%20Fluxy%20Como%20est%C3%A1s?" target="_blank" rel="noopener"
-              class="sm:hidden bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-bold text-center hover:bg-yellow-300 transition">
-              Probá como funciona
-            </a>
-            <a href="https://wa.me/59892131808?text=Hola!%20Fluxy%20Como%20est%C3%A1s?" target="_blank" rel="noopener"
+            <a href="https://wa.me/59892131808?text=Me%20interesa%20Fluxy" target="_blank" rel="noopener"
               class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-fluxy transition">Contactate
               con nosotros</a>
-          </div>
-        </div>
-        <div class="md:w-1/2 flex justify-center">
-          <div class="relative">
-            <img src="/static/pulpo_fluxy.png" alt="Asistente de WhatsApp automatizando conversaciones"
-              class="w-full max-w-lg octopus-bounce" width="800" height="600" decoding="async" />
           </div>
         </div>
       </div>
@@ -1346,71 +1770,74 @@
 
 
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-8 md:mb-10">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Tu equipo digital, en un solo click
           </h2>
+          <p class="max-w-3xl mx-auto text-gray-600 text-lg">
+            Elegí que preferís automatizar y Fluxy responde por vos.<br>
+            Sumá tantos Fluxys como necesites.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-[1]">
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-comments text-3xl text-fluxy" aria-hidden="true"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Respuestas 24/7</h3>
-            <p class="text-gray-600">Responde consultas en cualquier momento, optimizando tu tiempo y asegurando una
-              excelente experiencia para tus clientes
-              .</p>
+        <div class="octo-carousel-shell relative z-[1]">
+          <div class="octo-carousel-controls">
+            <button type="button" class="octo-carousel-btn prev" data-dir="-1" aria-label="Ver Fluxy anterior">
+              <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="octo-carousel-btn next" data-dir="1" aria-label="Ver siguiente Fluxy">
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-calendar-check text-3xl text-fluxy" aria-hidden="true"></i>
+          <div class="octo-carousel" id="fluxyCarousel">
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-anfitrion octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-anfitrion.png" alt="Fluxy Anfitrión" class="octo-scene-image" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Reservas</h3>
-            <p class="text-gray-600">Fluxy administra reservas, reprogramaciones y listas de espera garantizando que
-              nadie se quede sin su lugar.
-
-            </p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Anfitrión</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Atiende consultas generales, responde preguntas frecuentes y orienta a tus clientes las 24 horas, como si tu negocio tuviera siempre alguien disponible.</p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-money-bill-wave text-3xl text-fluxy" aria-hidden="true"></i>
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-ventas octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-ventas-v2.png" alt="Fluxy Ventas" class="octo-scene-image" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Seguimiento de Pagos</h3>
-            <p class="text-gray-600">Recibimos y procesamos los comprobantes de pago por vos y enviamos recordatorios a
-              tus clientes para que siempre estén al día.
-            </p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Ventas</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Ayuda a convertir consultas en pedidos, recomendando productos, compartiendo precios y guiando al cliente hasta dejar la venta lista para cerrar.</p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-chart-line text-3xl text-fluxy" aria-hidden="true"></i>
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-reservas octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-reservas-v2.png" alt="Fluxy Reservas" class="octo-scene-image" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Seguimiento de tu negocio</h3>
-            <p class="text-gray-600">Accedé a reportes sobre tu negocio que te ayudarán a mejorarlo y vender más.
-            </p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Reservas</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Gestiona turnos, reservas y disponibilidad de forma automática, para que tus clientes puedan coordinar sin idas y vueltas.</p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-users text-3xl text-fluxy" aria-hidden="true"></i>
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-eventos octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-eventos.png" alt="Fluxy Eventos" class="octo-scene-image" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Gestión de usuarios</h3>
-            <p class="text-gray-600">Manten registro de tus clientes y centraliza información clave.
-            </p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Eventos</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Recibe pedidos de eventos, entiende qué necesita cada cliente, genera cotizaciones personalizadas y acompaña el seguimiento hasta cerrar la reserva, todo desde WhatsApp y sin perder oportunidades.</p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-md transition feature-card">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-cogs text-3xl text-fluxy" aria-hidden="true"></i>
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-finanzas octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-finanzas-v2.png" alt="Fluxy Finanzas" class="octo-scene-image" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">100% Plataforma Online
-            </h3>
-            <p class="text-gray-600">Plataforma que te permite administrar tu negocio desde cualquier lugar del mundo.
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Finanzas</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Ordena cobros, pagos y comprobantes para que tengas más control y menos seguimiento manual en cada operación.</p>
+          </div>
 
-            </p>
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-rrhh octo-slide">
+            <div class="octo-scene">
+              <img src="./static/fluxy-talento-v2.png" alt="Fluxy Talento" class="octo-scene-image" decoding="async" />
+            </div>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Talento</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Recibe postulaciones, analiza CVs y ordena candidatos para que encuentres más rápido los perfiles que mejor encajan con cada búsqueda.</p>
+          </div>
           </div>
         </div>
       </div>
@@ -1425,19 +1852,74 @@
     <!-- NUEVO ORDEN (v3): Casos de uso – cards a la izquierda; teléfono a la derecha -->
     <section id="casos" class="relative py-16 md:py-20 bg-black text-white">
       <div class="max-w-7xl mx-auto px-6">
+        <h2 class="cases-mobile-title">Fluxy se adapta a todos los negocios</h2>
         <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-start cases-layout">
 
           <!-- Izquierda: título + grid de opciones -->
           <div class="md:pr-6 lg:pr-8">
-            <div class="mb-8 md:mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold mb-3">Fluxy se adapta a todos los negocios
+            <div class="cases-copy mb-8 md:mb-12">
+              <h2 class="cases-heading text-3xl md:text-4xl font-bold mb-3">
+                Fluxy se adapta a todos los negocios
               </h2>
               <p class="text-white/70">Elegí tu rubro y mirá lo que puede hacer por vos.
               </p>
             </div>
 
+            <div class="cases-marquee" aria-label="Rubros donde Fluxy puede aplicarse">
+              <div class="cases-marquee-track">
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏋️</span>Gimnasios y Estudios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💇</span>Peluquerías</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💅</span>Centros de Estética</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏠</span>Inmobiliarias</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎓</span>Academias y cursos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎉</span>Eventos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏋️</span>Gimnasios y Estudios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💇</span>Peluquerías</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💅</span>Centros de Estética</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏠</span>Inmobiliarias</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎓</span>Academias y cursos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎉</span>Eventos</span>
+              </div>
+              <div class="cases-marquee-track">
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛍️</span>Comercios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📦</span>Tiendas online</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🍽️</span>Restaurantes</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛠️</span>Servicios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🩺</span>Consultorios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🚗</span>Talleres</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛍️</span>Comercios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📦</span>Tiendas online</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🍽️</span>Restaurantes</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛠️</span>Servicios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🩺</span>Consultorios</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🚗</span>Talleres</span>
+              </div>
+              <div class="cases-marquee-track">
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏨</span>Hoteles</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💼</span>Profesionales</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📅</span>Turnos y reservas</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🤝</span>Atención al cliente</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💳</span>Cobros y pagos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🧾</span>Pedidos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏨</span>Hoteles</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💼</span>Profesionales</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📅</span>Turnos y reservas</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🤝</span>Atención al cliente</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💳</span>Cobros y pagos</span>
+                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🧾</span>Pedidos</span>
+              </div>
+            </div>
+
             <!-- Grid de opciones -->
-            <div id="casesLeft" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="cases-lane-controls" aria-label="Mover rubros">
+              <button type="button" class="octo-carousel-btn cases-lane-btn" data-cases-dir="-1" aria-label="Ver rubro anterior">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="octo-carousel-btn cases-lane-btn" data-cases-dir="1" aria-label="Ver siguiente rubro">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div id="casesLeft" class="cases-swimlane">
               <button class="use-card glass case-item" data-key="gym">
                 <div class="case-icon"><i class="fas fa-dumbbell"></i></div>
                 <div class="case-title">Gimnasios y Estudios
@@ -1502,200 +1984,17 @@
 
         </div>
       </div>
-    </section>
 
-    <section id="demo-fluxy" class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">
-          Mirá cómo Fluxy orquesta tu WhatsApp
-        </h2>
-
-
-
-
-        <div id="fluxy-flow" class="relative">
-          <div class="ff-main-container">
-            <div id="ff-diagram" class="ff-diagram-wrapper chaos">
-              <div class="ff-glow-effect"></div>
-
-              <div class="ff-grid-layout">
-                <div class="ff-columna ff-columna-entradas">
-                  <div class="ff-card-grid">
-                    <div id="ff-card-1" class="ff-card ff-wa-bubble" aria-label="Mensaje: preguntas">
-                      <div class="ff-wa-text">¡Hola! ¿Cuánto sale el plan mensual y hay cupos esta semana?</div>
-                      <div class="ff-wa-meta">Preguntas • FAQs / estado / precios</div>
-                      <span class="ff-wa-check" aria-hidden="true">
-                        <svg viewBox="0 0 16 16">
-                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <div id="ff-card-2" class="ff-card ff-wa-bubble" aria-label="Mensaje: alta de usuario">
-                      <div class="ff-wa-text">Hola, soy Sofi 🙋‍♀️. ¿Me registrás para empezar este mes?</div>
-                      <div class="ff-wa-meta">Altas de usuarios • leads / registros</div>
-                      <span class="ff-wa-check" aria-hidden="true">
-                        <svg viewBox="0 0 16 16">
-                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <div id="ff-card-3" class="ff-card ff-wa-bubble" aria-label="Mensaje: cancelación">
-                      <div class="ff-wa-text">Hola! Quiero cancelar mi clase de mañana, porfa.</div>
-                      <div class="ff-wa-meta">Cancelaciones • planes / clases</div>
-                      <span class="ff-wa-check" aria-hidden="true">
-                        <svg viewBox="0 0 16 16">
-                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <div id="ff-card-4" class="ff-card ff-wa-bubble" aria-label="Mensaje: reserva">
-                      <div class="ff-wa-text">¿Me reservás Reformer hoy 19:30? 🙏</div>
-                      <div class="ff-wa-meta">Reservas • clases y turnos</div>
-                      <span class="ff-wa-check" aria-hidden="true">
-                        <svg viewBox="0 0 16 16">
-                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <div id="ff-card-5" class="ff-card ff-wa-bubble" aria-label="Mensaje: comprobante">
-                      <div class="ff-wa-text">Te paso el comprobante del pago de agosto. ¿Lo recibiste?</div>
-                      <div class="ff-wa-meta">Documentos • comprobantes y recibos</div>
-                      <span class="ff-wa-check" aria-hidden="true">
-                        <svg viewBox="0 0 16 16">
-                          <path d="M6.2 10.6L3.5 7.9l1-1 1.7 1.7 4.3-4.3 1 1z" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="ff-columna ff-columna-core">
-                  <div id="ff-core" class="ff-core-wrapper">
-                    <div class="ff-core-box">
-                      <div class="ff-core-grid-pattern"></div>
-                      <div class="ff-core-content">
-                        <div class="ff-brand-title">FLUXY</div>
-                        <div class="ff-brand-subtitle">Tu equipo digital</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="ff-columna ff-columna-resultado">
-                  <div class="ff-outputs-col">
-                    <div class="ff-result-widgets">
-                      <div class="ff-widget ff-output-target" id="ff-w-calendar">
-                        <h3 class="ff-widget-title"><span class="ff-dot"></span> Agenda automatizada</h3>
-                        <div class="ff-calendar-header" aria-hidden="true">
-                          <div class="ff-cal-day">L</div>
-                          <div class="ff-cal-day">M</div>
-                          <div class="ff-cal-day">M</div>
-                          <div class="ff-cal-day">J</div>
-                          <div class="ff-cal-day">V</div>
-                          <div class="ff-cal-day">S</div>
-                          <div class="ff-cal-day">D</div>
-                        </div>
-                        <div class="ff-calendar" id="ff-calendar-grid" aria-label="Calendario con reservas">
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                          <div class="ff-cal-cell"></div>
-                        </div>
-                      </div>
-                      <div class="ff-widget ff-kpi-card ff-output-target" id="ff-w-receipts">
-                        <div class="ff-kpi-head">
-                          <span class="ff-dot-live" aria-hidden="true"></span>
-                          <h3>Comprobantes gestionados</h3>
-                          <div class="ff-chips" role="tablist" aria-label="Ventana temporal">
-                            <button class="ff-chip ff-active" aria-selected="true">Hora</button>
-                            <button class="ff-chip" aria-selected="false">Hoy</button>
-                            <button class="ff-chip" aria-selected="false">Semana</button>
-                          </div>
-                        </div>
-                        <div class="ff-kpi-body">
-                          <div class="ff-kpi-main">
-                            <div class="ff-kpi-value"><span id="ff-receipts-count">0</span></div>
-                            <div class="ff-kpi-sub">Procesados automáticamente</div>
-                            <div class="ff-progress" aria-hidden="true"><span id="ff-receipts-progress"
-                                style="width:0%"></span></div>
-                          </div>
-                          <div class="ff-kpi-side">
-                            <svg viewBox="0 0 100 28" class="ff-spark" aria-hidden="true">
-                              <polyline fill="none" stroke="currentColor" stroke-width="2"
-                                points="0,20 10,18 20,22 30,14 40,12 50,16 60,9 70,11 80,8 90,6 100,4" />
-                            </svg>
-                            <div class="ff-trend" id="ff-receipts-trend">▲ 0%</div>
-                          </div>
-                        </div>
-                        <ul class="ff-kpi-feed" aria-live="polite">
-                          <li>Recibido de Sofi (12:14)</li>
-                          <li>Validado transferencia de Lucas (12:12)</li>
-                        </ul>
-                      </div>
-                      <div class="ff-widget ff-kpi-card ff-output-target" id="ff-w-served">
-                        <div class="ff-kpi-head">
-                          <span class="ff-dot-live" aria-hidden="true"></span>
-                          <h3>Clientes atendidos</h3>
-                          <div class="ff-chips" role="tablist" aria-label="Ventana temporal">
-                            <button class="ff-chip ff-active" aria-selected="true">Hoy</button>
-                            <button class="ff-chip" aria-selected="false">Semana</button>
-                          </div>
-                        </div>
-                        <div class="ff-kpi-body">
-                          <div class="ff-kpi-main">
-                            <div class="ff-kpi-value"><span id="ff-served-count">0</span></div>
-                            <div class="ff-kpi-sub">Atendidos sin espera</div>
-                            <div class="ff-progress" aria-hidden="true"><span id="ff-served-progress"
-                                style="width:0%"></span></div>
-                          </div>
-                          <div class="ff-kpi-side">
-                            <svg viewBox="0 0 48 48" role="img" aria-label="Atención al cliente" class="ff-headset">
-                              <path fill="currentColor"
-                                d="M24 6c-8.3 0-15 6.7-15 15v9a5 5 0 0 0 5 5h4v-8h-6v-6c0-6.6 5.4-12 12-12s12 5.4 12 12v6h-6v8h4a5 5 0 0 0 5-5v-9c0-8.3-6.7-15-15-15z"
-                                opacity=".25" />
-                              <path fill="currentColor" d="M14 26h6v8h-6zM28 26h6v8h-6z" />
-                            </svg>
-                            <div class="ff-trend" id="ff-served-trend">▲ 0%</div>
-                          </div>
-                        </div>
-                        <div class="ff-kpi" style="justify-content:flex-end">
-                          <span class="ff-badge" id="ff-served-badge">+0</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <svg id="ff-connectors" class="ff-svg-layer"></svg>
-            </div>
+      <div id="casePhoneModal" class="case-phone-modal hidden" role="dialog" aria-modal="true"
+        aria-labelledby="casePhoneModalTitle">
+        <div class="case-phone-dialog">
+          <div class="case-phone-header">
+            <h3 id="casePhoneModalTitle" class="case-phone-title">Conversación</h3>
+            <button type="button" class="case-phone-close" aria-label="Cerrar conversación"
+              data-case-modal-close>&times;</button>
           </div>
+          <div id="casePhoneModalBody"></div>
         </div>
-
       </div>
     </section>
 
@@ -1715,30 +2014,28 @@
             class="bg-gray-50 p-8 rounded-xl shadow-md border-2 border-gray-100 transition pricing-card flex-1 flex flex-col justify-between">
             <div>
               <div class="mb-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Plan <br> Fluxy Asistente </h3>
-                <p class="text-gray-600">Ideal para potenciar tus ventas sin esfuerzo</p>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Plan Básico</h3>
+                <p class="text-gray-600">Ideal para empezar a automatizar tu WhatsApp sin complicarte.</p>
               </div>
               <div class="mb-6">
-                <span class="text-4xl font-bold text-fluxy">$30</span>
+                <span class="text-4xl font-bold text-fluxy">$50</span>
                 <span class="text-gray-500">/mes</span>
                 <span class="text-gray-400 text-sm ml-2">USD</span>
               </div>
+              <p class="mb-3 font-bold text-gray-800">Incluye:</p>
               <ul class="mb-8 space-y-3 text-black">
-                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Responde
-                    consultas 24/7 sobre tu negocio
-                  </span></li>
-                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Hace seguimiento
-                    de clientes interesados</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Acceso a
-                    plataforma Fluxy</span></li>
-
-
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Fluxy Anfitrión</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Respuestas a consultas frecuentes 24/7</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Información general del negocio</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Horarios, ubicación, servicios y productos</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Derivación a una persona cuando sea necesario</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Acceso a plataforma Fluxy</span></li>
               </ul>
             </div>
-            <a href="https://wa.me/59892131808"
+            <a href="https://wa.me/59892131808?text=%C2%A1Me%20encanta%20Fluxy!%20Quiero%20que%20se%20contacten%20conmigo%20para%20empezar%20a%20usarlo."
               target="_blank" rel="noopener"
-              class="block bg-fluxy text-white text-center py-3 rounded-full font-medium hover:bg-pink-600 transition">Empezar
-              prueba</a>
+              class="block bg-fluxy text-white text-center py-3 rounded-full font-medium hover:bg-pink-600 transition">Probar
+              30 días Gratis</a>
           </article>
 
           <!-- Pro -->
@@ -1747,36 +2044,32 @@
             <div
               class="absolute top-0 right-0 bg-yellow-400 text-gray-800 px-4 py-1 rounded-bl-lg rounded-tr-lg font-bold text-sm">
               Más elegido
-            </div>
+              </div>
             <div>
               <div class="mb-6">
-                <h3 class="text-xl font-bold mb-2">Plan <br> Fluxy Experto</h3>
+                <h3 class="text-xl font-bold mb-2">Plan <br> Equipo Digital</h3>
                 <p>Ideal para automatizar tu negocio y llevarlo al siguiente nivel</p>
               </div>
               <div class="mb-6">
-                <span class="text-4xl font-bold">$90</span>
-                <span class="opacity-80">/mes</span>
-                <span class="opacity-80 text-sm ml-2">USD</span>
+                <span class="text-4xl font-bold">A medida</span>
+                <p class="opacity-80 mt-2">Cotización personalizada según tu negocio.</p>
               </div>
+              <p class="mb-3 font-bold">Incluye:</p>
               <ul class="mb-8 space-y-3">
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span><strong>Todo lo del
-                      Fluxy Asistente, y además:</strong></span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Gestión de nuevos
-                    clientes</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Administra reservas
-                    y listas de espera</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Administra tus
-                    cobros y envía recordatorios de pago</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Alerta de
-                    conversaciones importantes para que decidas intervenir.</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Reportes de tu
-                    negocio</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Todo lo del Plan Básico</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Fluxys adicionales según tu necesidad</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Ayuda a vender más y tomar pedidos</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Gestión de reservas, agenda y listas de espera</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Cobros, pagos y recordatorios automáticos</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Integración con herramientas de tu negocio</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Alertas cuando una conversación necesita tu intervención</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Reportes y seguimiento de tu operación</span></li>
               </ul>
             </div>
-            <a href="https://wa.me/59892131808"
+            <a href="https://wa.me/59892131808?text=%C2%A1Me%20encanta%20Fluxy!%20Quiero%20que%20se%20contacten%20conmigo%20para%20empezar%20a%20usarlo."
               target="_blank" rel="noopener"
-              class="block bg-white text-fluxy text-center py-3 rounded-full font-medium hover:bg-gray-100 transition">Empezar
-              prueba</a>
+              class="block bg-white text-fluxy text-center py-3 rounded-full font-medium hover:bg-gray-100 transition">Solicitar
+              Cotización</a>
           </article>
         </div>
       </div>
@@ -1941,13 +2234,13 @@
         <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para transformar tu negocio?</h2>
         <p class="text-xl mb-8">Sumá a Fluxy a tu equipo y comenzá a vender más.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="https://wa.me/59892131808?text=Hola!%20Fluxy%20Como%20estás?" target="_blank" rel="noopener"
-            class="bg-fluxy text-white px-5 py-2 rounded-full font-medium hover:bg-pink-600 transition">Probá como
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://wa.me/59892131808?text=Me%20interesa%20Fluxy" target="_blank" rel="noopener"
+            class="inline-flex min-w-48 items-center justify-center bg-fluxy text-white px-8 py-3 rounded-full font-bold text-center hover:bg-pink-600 transition">Probá como
             funciona</a>
 
           <a href="#precios"
-            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-900 transition">Ver
+            class="inline-flex min-w-48 items-center justify-center bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-gray-900 transition">Ver
             planes</a>
         </div>
       </div>
@@ -1955,25 +2248,16 @@
   </main>
 
   <!-- Footer (sin cambios) -->
-  <footer class="bg-gray-800 text-gray-300 py-12">
+  <footer class="bg-[#1e2736] text-gray-300 py-12">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+      <div class="flex flex-col items-center text-center">
 
-        <!-- Logo + claim + redes -->
-        <div class="text-center md:text-left">
-          <img src="/static/Color logo - no background.png" alt="Fluxy — plataforma de asistentes de IA para WhatsApp"
-            class="w-36 mx-auto md:mx-0 mb-4" loading="lazy" />
-          <p class="mb-5 leading-snug">Tu equipo digital <br> en un solo click</p>
+        <!-- Logo + redes -->
+        <div>
+          <img src="./static/logo-footer.png" alt="Fluxy — plataforma de asistentes de IA para WhatsApp"
+            class="w-36 mx-auto mb-4" loading="lazy" />
 
-          <div class="flex justify-center md:justify-start gap-4" aria-label="Redes sociales">
-            <a href="https://www.instagram.com/fluxy.latam/" aria-label="Facebook"
-              class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
-              <i class="fab fa-facebook-f text-lg" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.instagram.com/fluxy.latam/" aria-label="Twitter/X"
-              class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
-              <i class="fab fa-twitter text-lg" aria-hidden="true"></i>
-            </a>
+          <div class="flex justify-center gap-4" aria-label="Redes sociales">
             <a href="https://www.instagram.com/fluxy.latam/" aria-label="Instagram"
               class="p-2 rounded-full text-gray-400 hover:text-fluxy focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxy/60 transition">
               <i class="fab fa-instagram text-lg" aria-hidden="true"></i>
@@ -1985,28 +2269,13 @@
           </div>
         </div>
 
-        <!-- Producto -->
-        <div class="text-center md:text-left">
-          <h4 class="text-white font-bold mb-4">Producto</h4>
-          <ul class="space-y-2">
-            <li><a href="#caracteristicas" class="hover:text-fluxy transition">Quienes somos</a></li>
-            <li><a href="#casos" class="hover:text-fluxy transition">Soluciones</a></li>
-            <li><a href="#precios" class="hover:text-fluxy transition">Planes</a></li>
+        <div class="w-16 border-t border-gray-600 my-6" aria-hidden="true"></div>
 
-
-          </ul>
-        </div>
-
-        <!-- Compañía -->
-        <div class="text-center md:text-left">
-          <h4 class="text-white font-bold mb-4">Compañía</h4>
-          <ul class="space-y-2">
-            <li><a href="https://wa.me/59892131808" target="_blank" rel="noopener"
-                class="hover:text-fluxy transition">Contacto</a></li>
-
-            <li><a href="#cta" class="hover:text-fluxy transition">Privacidad</a></li>
-          </ul>
-        </div>
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <li><a href="https://wa.me/59892131808" target="_blank" rel="noopener"
+              class="hover:text-fluxy transition">Contacto</a></li>
+          <li><a href="#cta" class="hover:text-fluxy transition">Privacidad</a></li>
+        </ul>
 
       </div>
 
@@ -2028,15 +2297,21 @@
         if (y) y.textContent = new Date().getFullYear();
       })();
 
-    // Menú móvil accesible
     (function () {
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (!menuBtn || !mobileMenu) return;
+      const track = document.getElementById('fluxyCarousel');
+      if (!track) return;
 
-      menuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        menuBtn.setAttribute('aria-expanded', String(!isHidden));
+      const buttons = Array.from(document.querySelectorAll('.octo-carousel-btn'));
+      const firstSlide = track.querySelector('.octo-slide');
+      if (!firstSlide || !buttons.length) return;
+
+      const getStep = () => firstSlide.getBoundingClientRect().width + 24;
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const dir = Number(btn.getAttribute('data-dir') || '1');
+          track.scrollBy({ left: dir * getStep(), behavior: 'smooth' });
+        });
       });
     })();
 
@@ -2063,8 +2338,18 @@
     (function () {
       const phone = document.getElementById('phoneView');
       const cards = Array.from(document.querySelectorAll('#casesLeft .use-card'));
+      const phoneCol = document.querySelector('#casos .phone-col');
+      const modal = document.getElementById('casePhoneModal');
+      const modalBody = document.getElementById('casePhoneModalBody');
+      const modalTitle = document.getElementById('casePhoneModalTitle');
+      const casesLane = document.getElementById('casesLeft');
+      const casesLaneButtons = Array.from(document.querySelectorAll('[data-cases-dir]'));
+      const phoneAnchor = document.createComment('phone-desktop-position');
 
-      if (!phone || !cards.length) return;
+      if (!phone || !cards.length || !phoneCol || !modal || !modalBody || !modalTitle || !casesLane) return;
+      phoneCol.before(phoneAnchor);
+      const isMobileCases = () => window.matchMedia('(max-width: 767px)').matches;
+      let didDragCases = false;
 
       // Conversaciones más humanas, con la “voz” de Fluxy
       const CASES = {
@@ -2148,7 +2433,7 @@
             ['Cliente', 'Ah perfecto, si, pasame mas opciones en Pocitos y Punta Carretas'],
             ['Fluxy', 'Claro, te mando 3 opciones más por email.'],
             ['Cliente', 'Gracias, si no puedo el viernes, ¿puedo reprogramar?'],
-            ['Fluxy', 'Obvio, avisame y te paso nuevos horarios disponibles.']
+            ['Fluxy', 'Obvio, avisame y te paso nuevos horarios disponibles.'],
             ['Cliente', 'Excelente gracias!!!'],
 
 
@@ -2226,7 +2511,7 @@
   `);
       }
       function renderFrame(title, chips) {
-        const avatarSrc = '/static/pulpo_fluxy.png';
+        const avatarSrc = './static/pulpo_fluxy.png';
         phone.innerHTML = `
     <div class="wa-header">
       <div class="avatar"><img src="${avatarSrc}" alt="Fluxy" class="w-full h-full object-cover"></div>
@@ -2292,242 +2577,130 @@
       }
 
 
-      function setActive(el) {
+      function setActive(el, { openModal = false } = {}) {
         cards.forEach(c => c.removeAttribute('aria-current'));
         document.getElementById('phoneShell')?.setAttribute('data-theme', el.dataset.key);
         el.setAttribute('aria-current', 'true');
+        placePhone(el, openModal);
         playConversation(el.dataset.key);
       }
 
+      function openCaseModal(activeCard) {
+        const title = activeCard.querySelector('.case-title')?.textContent?.trim() || 'Conversación';
+        modalTitle.textContent = title;
+        modalBody.appendChild(phoneCol);
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCaseModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        phoneAnchor.after(phoneCol);
+        playId++;
+      }
+
+      function placePhone(activeCard, openModal) {
+        if (isMobileCases()) {
+          if (openModal) openCaseModal(activeCard);
+          else phoneAnchor.after(phoneCol);
+        } else {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+          phoneAnchor.after(phoneCol);
+        }
+      }
+
       // Eventos: hover/focus/click
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let dragActive = false;
+
+      casesLane.addEventListener('pointerdown', (event) => {
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        dragActive = true;
+        didDragCases = false;
+      });
+
+      casesLane.addEventListener('pointermove', (event) => {
+        if (!dragActive || !isMobileCases()) return;
+        const dx = Math.abs(event.clientX - dragStartX);
+        const dy = Math.abs(event.clientY - dragStartY);
+        if (dx > 12 && dx > dy) didDragCases = true;
+      });
+
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+        casesLane.addEventListener(eventName, () => {
+          dragActive = false;
+          setTimeout(() => {
+            didDragCases = false;
+          }, 120);
+        });
+      });
+
       cards.forEach(card => {
-        card.addEventListener('mouseenter', () => setActive(card));
-        card.addEventListener('focus', () => setActive(card));
-        card.addEventListener('click', () => setActive(card));
+        card.addEventListener('mouseenter', () => {
+          if (!isMobileCases()) setActive(card);
+        });
+        card.addEventListener('focus', () => {
+          if (!isMobileCases()) setActive(card);
+        });
+        card.addEventListener('click', (event) => {
+          if (isMobileCases() && didDragCases) {
+            event.preventDefault();
+            return;
+          }
+          setActive(card, { openModal: isMobileCases() });
+        });
+      });
+
+      casesLaneButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const dir = Number(button.getAttribute('data-cases-dir') || '1');
+          const firstCard = cards[0];
+          const laneStyles = getComputedStyle(casesLane);
+          const gap = parseFloat(laneStyles.columnGap || laneStyles.gap || '16') || 16;
+          const cardStep = firstCard.getBoundingClientRect().width + gap;
+          casesLane.scrollBy({ left: dir * cardStep, behavior: 'smooth' });
+        });
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeCaseModal();
+      });
+
+      modal.querySelectorAll('[data-case-modal-close]').forEach((button) => {
+        button.addEventListener('click', closeCaseModal);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeCaseModal();
+        }
       });
 
       // Estado inicial
-      setActive(cards[0]);
+      if (isMobileCases()) {
+        cards.forEach(c => c.removeAttribute('aria-current'));
+        phoneAnchor.after(phoneCol);
+      } else {
+        setActive(cards[0]);
+      }
+
+      window.addEventListener('resize', () => {
+        const active = document.querySelector('#casesLeft .use-card[aria-current="true"]') || cards[0];
+        if (isMobileCases()) {
+          if (modal.classList.contains('hidden')) phoneAnchor.after(phoneCol);
+        } else {
+          placePhone(active, false);
+        }
+      });
     })();
 
 
 
     // Auto-altura del iframe (eliminado: ya no usamos iframe)
-  </script>
-
-
-
-
-
-  <!-- Fluxy Flow (scoped) -->
-  <script>
-    (function () {
-      const root = document.getElementById('fluxy-flow');
-      if (!root) return;
-
-      const container = root.querySelector('#ff-diagram');
-      const coreTarget = root.querySelector('#ff-core');
-      const svgLayer = root.querySelector('#ff-connectors');
-      const sourceEls = Array.from(root.querySelectorAll('.ff-columna-entradas .ff-card'));
-      const outputEls = Array.from(root.querySelectorAll('.ff-columna-resultado .ff-output-target'));
-
-      const SVG_NS = "http://www.w3.org/2000/svg";
-      const XLINK_NS = "http://www.w3.org/1999/xlink";
-
-      function drawConnectors() {
-        if (!container || !coreTarget || !svgLayer) return;
-
-        svgLayer.innerHTML = '';
-        const cRect = container.getBoundingClientRect();
-        const tRect = coreTarget.getBoundingClientRect();
-
-        const x2 = tRect.left - cRect.left + tRect.width * 0.05;
-        const y2Mid = tRect.top - cRect.top + tRect.height / 2;
-
-        svgLayer.setAttribute('viewBox', `0 0 ${cRect.width} ${cRect.height}`);
-
-        // ENTRADAS -> CORE
-        sourceEls.forEach((el, i) => {
-          const sRect = el.getBoundingClientRect();
-          const x1 = sRect.right - cRect.left;
-          const y1 = sRect.top - cRect.top + sRect.height / 2;
-
-          const cx1 = x1 + (x2 - x1) * 0.35;
-          const cx2 = x1 + (x2 - x1) * 0.75;
-          const d = `M ${x1} ${y1} C ${cx1} ${y1}, ${cx2} ${y2Mid}, ${x2} ${y2Mid}`;
-          const id = `ff-in-${i}`;
-
-          const g = document.createElementNS(SVG_NS, 'g');
-          const path = document.createElementNS(SVG_NS, 'path');
-          path.setAttribute('id', id);
-          path.setAttribute('d', d);
-          path.setAttribute('fill', 'none');
-          path.setAttribute('stroke', '#f70776');
-          path.setAttribute('opacity', '0.35');
-          path.setAttribute('stroke-width', '1.8');
-          path.setAttribute('stroke-dasharray', '2 7');
-
-          const animDash = document.createElementNS(SVG_NS, 'animate');
-          animDash.setAttribute('attributeName', 'stroke-dashoffset');
-          animDash.setAttribute('from', '0'); animDash.setAttribute('to', '-90');
-          animDash.setAttribute('dur', '3s'); animDash.setAttribute('repeatCount', 'indefinite');
-          path.appendChild(animDash); g.appendChild(path);
-
-          const circle = document.createElementNS(SVG_NS, 'circle');
-          circle.setAttribute('r', '2.3'); circle.setAttribute('fill', '#f70776');
-          const animMotion = document.createElementNS(SVG_NS, 'animateMotion');
-          animMotion.setAttribute('dur', '2.6s'); animMotion.setAttribute('repeatCount', 'indefinite');
-          const mpath = document.createElementNS(SVG_NS, 'mpath');
-          mpath.setAttributeNS(XLINK_NS, 'xlink:href', `#${id}`);
-          animMotion.appendChild(mpath); circle.appendChild(animMotion); g.appendChild(circle);
-
-          svgLayer.appendChild(g);
-        });
-
-        // CORE -> SALIDAS
-        outputEls.forEach((el, i) => {
-          const oRect = el.getBoundingClientRect();
-          const xStart = tRect.left - cRect.left + tRect.width * 0.95;
-          const yStart = tRect.top - cRect.top + tRect.height / 2;
-          const xEnd = oRect.left - cRect.left;
-          const yEnd = oRect.top - cRect.top + oRect.height / 2;
-
-          const cx1 = xStart + (xEnd - xStart) * 0.35;
-          const cx2 = xStart + (xEnd - xStart) * 0.75;
-          const d = `M ${xStart} ${yStart} C ${cx1} ${yStart}, ${cx2} ${yEnd}, ${xEnd} ${yEnd}`;
-          const id = `ff-out-${i}`;
-
-          const g = document.createElementNS(SVG_NS, 'g');
-          const path = document.createElementNS(SVG_NS, 'path');
-          path.setAttribute('id', id);
-          path.setAttribute('d', d);
-          path.setAttribute('fill', 'none');
-          path.setAttribute('stroke', '#f70776');
-          path.setAttribute('opacity', '0.35');
-          path.setAttribute('stroke-width', '1.8');
-          path.setAttribute('stroke-dasharray', '2 7');
-          const animDash = document.createElementNS(SVG_NS, 'animate');
-          animDash.setAttribute('attributeName', 'stroke-dashoffset');
-          animDash.setAttribute('from', '0'); animDash.setAttribute('to', '-90');
-          animDash.setAttribute('dur', '3s'); animDash.setAttribute('repeatCount', 'indefinite');
-          path.appendChild(animDash); g.appendChild(path);
-
-          const circle = document.createElementNS(SVG_NS, 'circle');
-          circle.setAttribute('r', '2.3'); circle.setAttribute('fill', '#f70776');
-          const animMotion = document.createElementNS(SVG_NS, 'animateMotion');
-          animMotion.setAttribute('dur', '2.6s'); animMotion.setAttribute('repeatCount', 'indefinite');
-          const mpath = document.createElementNS(SVG_NS, 'mpath');
-          mpath.setAttributeNS(XLINK_NS, 'xlink:href', `#${id}`);
-          animMotion.appendChild(mpath); circle.appendChild(animMotion); g.appendChild(circle);
-
-          svgLayer.appendChild(g);
-        });
-      }
-
-      function startCalendarBlink() {
-        const grid = root.querySelector('#ff-calendar-grid'); if (!grid) return;
-        const cells = Array.from(grid.querySelectorAll('.ff-cal-cell'));
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        setInterval(() => {
-          const n = Math.max(1, Math.floor(Math.random() * 3));
-          for (let i = 0; i < n; i++) {
-            const idx = Math.floor(Math.random() * cells.length);
-            const cell = cells[idx];
-            cell.classList.add('blink');
-            setTimeout(() => cell.classList.remove('blink'), 600 + Math.random() * 400);
-          }
-        }, 900);
-      }
-
-      function randomAscCounter(el, { start = 0, minStep = 1, maxStep = 7, maxJumps = 60, jitter = 220, cap = null } = {}) {
-        if (!el) return;
-        let value = start, jumps = 0;
-        const tick = () => {
-          jumps++;
-          const step = Math.floor(Math.random() * (maxStep - minStep + 1)) + minStep;
-          value += step;
-          if (cap && value > cap) value = cap;
-          el.textContent = value.toLocaleString('es-UY');
-          if (jumps < maxJumps && (!cap || value < cap)) {
-            setTimeout(tick, Math.max(140, Math.random() * jitter));
-          }
-        };
-        tick();
-      }
-
-      const TARGETS = { receiptsHour: 250, servedDay: 600 };
-
-      function updateKpiProgress() {
-        const rc = root.querySelector('#ff-receipts-count');
-        const sp = root.querySelector('#ff-served-count');
-        const rpBar = root.querySelector('#ff-receipts-progress');
-        const svBar = root.querySelector('#ff-served-progress');
-        const rTrend = root.querySelector('#ff-receipts-trend');
-        const sTrend = root.querySelector('#ff-served-trend');
-
-        if (rc && rpBar) {
-          const v = Number((rc.textContent || '0').replace(/\./g, ''));
-          const pct = Math.max(0, Math.min(100, Math.round(100 * v / TARGETS.receiptsHour)));
-          rpBar.style.width = pct + '%';
-          if (rTrend) {
-            const up = Math.random() > .3;
-            rTrend.textContent = (up ? '▲ ' : '▼ ') + Math.floor(Math.random() * 12) + '%';
-            rTrend.classList.toggle('down', !up);
-          }
-        }
-
-        if (sp && svBar) {
-          const v = Number((sp.textContent || '0').replace(/\./g, ''));
-          const pct = Math.max(0, Math.min(100, Math.round(100 * v / TARGETS.servedDay)));
-          svBar.style.width = pct + '%';
-          if (sTrend) {
-            const up = Math.random() > .25;
-            sTrend.textContent = (up ? '▲ ' : '▼ ') + Math.floor(Math.random() * 10) + '%';
-            sTrend.classList.toggle('down', !up);
-          }
-        }
-      }
-
-      function startOutputs() {
-        startCalendarBlink();
-        randomAscCounter(root.querySelector('#ff-receipts-count'), { start: 0, minStep: 1, maxStep: 5, maxJumps: 60, jitter: 1250 });
-
-        const servedEl = root.querySelector('#ff-served-count');
-        const badgeEl = root.querySelector('#ff-served-badge');
-        if (servedEl) {
-          let last = 0;
-          const updateBadge = (val) => { if (badgeEl) badgeEl.textContent = `+${val - last}`; last = val; };
-          let value = 0, jumps = 0;
-          (function loop() {
-            jumps++;
-            const step = Math.floor(Math.random() * 6) + 1;
-            value += step;
-            servedEl.textContent = value.toLocaleString('es-UY');
-            updateBadge(value);
-            if (jumps < 150) setTimeout(loop, 120 + Math.random() * 220);
-            else if (badgeEl) badgeEl.textContent = `+${Math.max(1, Math.floor(Math.random() * 3))}`;
-          })();
-        }
-      }
-
-      function init() {
-        drawConnectors();
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(drawConnectors, 100);
-        });
-
-        const wrapper = root.querySelector('.ff-diagram-wrapper');
-        const stopChaosAfter = 2200;
-        setTimeout(() => { wrapper && wrapper.classList.remove('chaos'); }, stopChaosAfter);
-
-        setTimeout(startOutputs, stopChaosAfter + 100);
-        setInterval(updateKpiProgress, 1200);
-      }
-
-      init();
-    })();
   </script>
 
 </body>
