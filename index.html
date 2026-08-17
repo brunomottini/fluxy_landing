@@ -576,6 +576,23 @@
       margin-right: -.2rem;
     }
 
+    @media (min-width: 768px) {
+      .octo-carousel {
+        overflow: visible;
+        padding: .25rem 0 1rem;
+      }
+
+      .octo-slide {
+        min-width: 0;
+        max-width: none;
+        flex: 1 1 0;
+      }
+
+      .octo-carousel-controls {
+        display: none;
+      }
+    }
+
     @media (max-width: 767px) {
       .octo-carousel {
         padding-inline: .15rem;
@@ -590,137 +607,30 @@
       }
     }
 
-    .octo-anfitrion {
+    .octo-anfitrion,
+    .octo-agenda,
+    .octo-administrativo {
       --octo-accent: #f70776;
     }
 
-    .octo-anfitrion .octo-scene {
+    .octo-anfitrion .octo-scene,
+    .octo-agenda .octo-scene,
+    .octo-administrativo .octo-scene {
       padding: 0;
       background:
         radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
         linear-gradient(180deg, #110a17, #241124 58%, #311225);
     }
 
-    .octo-anfitrion .octo-scene::before {
+    .octo-anfitrion .octo-scene::before,
+    .octo-agenda .octo-scene::before,
+    .octo-administrativo .octo-scene::before {
       display: none;
     }
 
-    .octo-anfitrion .octo-scene-image {
-      border-radius: .9rem;
-      object-fit: cover;
-      transform: scale(1.12);
-      transform-origin: center;
-      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
-    }
-
-    .octo-ventas {
-      --octo-accent: #2563eb;
-    }
-
-    .octo-ventas .octo-scene {
-      padding: 0;
-      background:
-        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
-        linear-gradient(180deg, #110a17, #241124 58%, #311225);
-    }
-
-    .octo-ventas .octo-scene::before {
-      display: none;
-    }
-
-    .octo-ventas .octo-scene-image {
-      border-radius: .9rem;
-      object-fit: cover;
-      transform: scale(1.14);
-      transform-origin: center;
-      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
-    }
-
-    .octo-reservas {
-      --octo-accent: #16a34a;
-    }
-
-    .octo-reservas .octo-scene {
-      padding: 0;
-      background:
-        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
-        linear-gradient(180deg, #110a17, #241124 58%, #311225);
-    }
-
-    .octo-reservas .octo-scene::before {
-      display: none;
-    }
-
-    .octo-reservas .octo-scene-image {
-      border-radius: .9rem;
-      object-fit: cover;
-      transform: scale(1.12);
-      transform-origin: center;
-      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
-    }
-
-    .octo-eventos {
-      --octo-accent: #f70776;
-    }
-
-    .octo-eventos .octo-scene {
-      padding: 0;
-      background:
-        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
-        linear-gradient(180deg, #110a17, #241124 58%, #311225);
-    }
-
-    .octo-eventos .octo-scene::before {
-      display: none;
-    }
-
-    .octo-eventos .octo-scene-image {
-      border-radius: .9rem;
-      object-fit: cover;
-      transform: scale(1.12);
-      transform-origin: center;
-      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
-    }
-
-    .octo-finanzas {
-      --octo-accent: #7c3aed;
-    }
-
-    .octo-finanzas .octo-scene {
-      padding: 0;
-      background:
-        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
-        linear-gradient(180deg, #110a17, #241124 58%, #311225);
-    }
-
-    .octo-finanzas .octo-scene::before {
-      display: none;
-    }
-
-    .octo-finanzas .octo-scene-image {
-      border-radius: .9rem;
-      object-fit: cover;
-      transform: scale(1.12);
-      transform-origin: center;
-      box-shadow: 0 18px 34px -24px rgba(0, 0, 0, .65);
-    }
-
-    .octo-rrhh {
-      --octo-accent: #ca8a04;
-    }
-
-    .octo-rrhh .octo-scene {
-      padding: 0;
-      background:
-        radial-gradient(circle at 50% 70%, rgba(255, 0, 128, .18), transparent 34%),
-        linear-gradient(180deg, #110a17, #241124 58%, #311225);
-    }
-
-    .octo-rrhh .octo-scene::before {
-      display: none;
-    }
-
-    .octo-rrhh .octo-scene-image {
+    .octo-anfitrion .octo-scene-image,
+    .octo-agenda .octo-scene-image,
+    .octo-administrativo .octo-scene-image {
       border-radius: .9rem;
       object-fit: cover;
       transform: scale(1.12);
@@ -759,820 +669,6 @@
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
-    }
-
-    /* Drag visual y selección */
-    #casesScroller {
-      cursor: grab;
-    }
-
-    #casesScroller.dragging {
-      cursor: grabbing;
-    }
-
-    /* (Opcional) que el viewport “enganche” la sección Casos al entrar */
-    @media (min-width:768px) {
-
-      html,
-      body {
-        scroll-snap-type: y proximity;
-        scroll-padding-top: 96px;
-      }
-
-      #casos {
-        scroll-snap-align: start;
-      }
-    }
-
-
-
-    /* Glass + borde suave */
-    .glass {
-      border: 1px solid transparent;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03)) padding-box,
-        linear-gradient(135deg, rgba(247, 7, 118, .45), rgba(255, 255, 255, .12)) border-box;
-      backdrop-filter: blur(6px);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .use-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .use-card[aria-current="true"] {
-      box-shadow: 0 24px 60px -24px rgba(247, 7, 118, .6);
-      outline: 2px solid rgba(247, 7, 118, .75);
-      outline-offset: 0;
-    }
-
-    /* Teléfono con fondo blanco */
-    .phone-shell {
-      background: #fff;
-      border-radius: 1.6rem;
-    }
-
-    /* Burbuja de typing (estilo mensaje entrante, izquierda, fondo blanco) */
-    .msg-typing {
-      align-self: flex-start;
-      background: #fff;
-      color: #111;
-      border-radius: 16px;
-      padding: 6px 8px 6px 9px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
-      max-width: 78%;
-    }
-
-    .typing-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #9aa0a6;
-      opacity: .6;
-      animation: typing-bounce 1.1s infinite ease-in-out;
-    }
-
-    .typing-dot:nth-child(2) {
-      animation-delay: .15s
-    }
-
-    .typing-dot:nth-child(3) {
-      animation-delay: .30s
-    }
-
-    @keyframes typing-bounce {
-
-      0%,
-      80%,
-      100% {
-        transform: translateY(0);
-        opacity: .35
-      }
-
-      40% {
-        transform: translateY(-2px);
-        opacity: 1
-      }
-    }
-
-    /* Marco de teléfono */
-    .phone-wa {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-      border: 0;
-      position: relative;
-      z-index: 1;
-      box-shadow: none;
-    }
-
-    /* Flotación más notoria + halo Fluxy más contenido */
-    .phone-wa-inner {
-      background: #fff;
-      border-radius: 1.6rem;
-      overflow: hidden;
-      position: relative;
-      box-shadow:
-        0 28px 60px -18px rgba(0, 0, 0, .85),
-        /* sombra principal */
-        0 8px 24px -12px rgba(0, 0, 0, .45),
-        /* sombra secundaria corta */
-        0 0 44px 0 rgba(247, 7, 118, .18);
-      /* halo Fluxy suave */
-    }
-
-    /* Glow exterior muy sutil para “recortar” el teléfono del fondo */
-    .phone-wa::after {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      /* por debajo del inner, por encima del fondo */
-      inset: -24px;
-      /* expande el área del glow */
-      border-radius: 2rem;
-      pointer-events: none;
-      background: radial-gradient(closest-side,
-          rgba(247, 7, 118, .16) 0%,
-          rgba(247, 7, 118, .08) 40%,
-          rgba(247, 7, 118, 0) 70%);
-      filter: blur(8px);
-    }
-
-
-    /* Header estilo WhatsApp */
-    .wa-header {
-      background: linear-gradient(0deg, #075E54, #0A7C74);
-      color: #fff;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .wa-header .avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .wa-header .name {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 1;
-    }
-
-    .wa-header .status {
-      font-size: 11px;
-      opacity: .85;
-      margin-top: 2px;
-    }
-
-    /* Fondo tipo wallpaper WhatsApp */
-    .wa-chat {
-      background: radial-gradient(1200px 600px at 120% -10%, rgba(7, 94, 84, .10), transparent), #eae6df;
-      position: relative;
-    }
-
-    .wa-chat::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .08;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%23000000' stroke-opacity='.6' stroke-width='.6'><circle cx='40' cy='40' r='16'/><circle cx='120' cy='80' r='12'/><rect x='90' y='20' width='18' height='12' rx='6'/><path d='M18 118c8-10 22-10 30 0M122 120c6 8 18 8 24 0'/></g></svg>");
-      background-size: 160px 160px;
-    }
-
-    /* Burbujas WhatsApp */
-    .msg-wrap {
-      padding: 10px 8px 12px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      overflow-y: auto;
-    }
-
-    .msg {
-      max-width: 78%;
-      padding: 6px 8px 6px 9px;
-      border-radius: 16px;
-      font-size: 13px;
-      line-height: 1.25;
-      box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
-      color: #111;
-    }
-
-    .msg-in {
-      align-self: flex-start;
-      background: #fff;
-    }
-
-    .msg-out {
-      align-self: flex-end;
-      background: #E7FFDB;
-    }
-
-    .meta {
-      color: #6b7280;
-    }
-
-    .meta {
-      margin-left: 6px;
-      font-size: 10px;
-      opacity: .6;
-      white-space: nowrap;
-    }
-
-    /* (bloque antiguo de .typing verde —lo dejo por compatibilidad, pero no se usa) */
-    .typing {
-      align-self: flex-end;
-      background: #E7FFDB;
-      color: #075E54;
-      border-radius: 999px;
-      padding: 6px 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-    }
-
-    /* (sus dots viejos) */
-    .typing .typing-dot {
-      background: #075E54;
-      opacity: .35;
-    }
-
-    /* Barra de entrada (decorativa) */
-    .wa-input {
-      background: #f7f7f7;
-      padding: 6px 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-top: 1px solid rgba(0, 0, 0, .06);
-    }
-
-    .wa-input .fake {
-      flex: 1;
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 20px;
-      height: 30px;
-    }
-
-    .wa-input .mic {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #0A7C74;
-    }
-
-    /* Cards del grid (más cuadradas y legibles) */
-    #casos .cases-copy {
-      max-width: 34rem;
-    }
-
-    #casos .cases-heading {
-      line-height: 1.08;
-      text-wrap: balance;
-    }
-
-    .case-item {
-      flex: 0 0 calc((100% - 1rem) / 2);
-      min-width: 0;
-      border-radius: 16px;
-      padding: 1rem;
-      text-align: left;
-      background: rgba(255, 255, 255, .04);
-      border: 1px solid rgba(255, 255, 255, .12);
-      transition: box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
-      min-height: 132px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 8px;
-      scroll-snap-align: start;
-      touch-action: pan-x;
-    }
-
-    .case-item:hover {
-      background: rgba(255, 255, 255, .065);
-      border-color: rgba(247, 7, 118, .6);
-      box-shadow: 0 20px 50px -20px rgba(247, 7, 118, .45);
-    }
-
-    .case-item[aria-current="true"] {
-      outline: none;
-      border-color: rgba(247, 7, 118, .85);
-      box-shadow: 0 24px 60px -24px rgba(247, 7, 118, .6);
-    }
-
-    .case-icon {
-      font-size: 28px;
-      color: #fff;
-    }
-
-    .case-title {
-      font-weight: 700;
-      font-size: 15px;
-      color: #fff;
-      line-height: 1.2;
-      overflow-wrap: anywhere;
-    }
-
-    .case-sub {
-      font-size: 12px;
-      color: rgba(255, 255, 255, .7);
-      line-height: 1.35;
-    }
-
-    .cases-lane-controls {
-      display: flex;
-      justify-content: flex-start;
-      gap: .75rem;
-      margin-bottom: 1rem;
-    }
-
-    .cases-lane-btn {
-      color: #111827;
-      background: #fff;
-      border-color: rgba(255, 255, 255, .7);
-      flex: 0 0 3rem;
-    }
-
-    .cases-lane-btn:hover {
-      background: #FFDE21;
-      transform: translateY(-1px);
-    }
-
-    .cases-marquee {
-      display: none;
-    }
-
-    .cases-mobile-title {
-      display: none;
-    }
-
-    #casesLeft.cases-swimlane {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-padding-inline: .25rem;
-      padding: .65rem .25rem 1.1rem;
-      margin-inline: -.25rem;
-      overscroll-behavior-x: contain;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
-    }
-
-    #casesLeft::-webkit-scrollbar {
-      display: none;
-    }
-
-    @media (max-width: 767px) {
-      #casos {
-        padding-top: 4.5rem;
-        background:
-          radial-gradient(circle at 50% 0%, rgba(247, 7, 118, .26), transparent 34%),
-          radial-gradient(circle at 18% 46%, rgba(168, 85, 247, .18), transparent 30%),
-          radial-gradient(circle at 92% 72%, rgba(255, 222, 33, .09), transparent 26%),
-          linear-gradient(180deg, #07050a 0%, #120711 52%, #07050a 100%);
-      }
-
-      #casos .cases-mobile-title {
-        display: block;
-        max-width: 20rem;
-        margin: 0 auto 1.55rem;
-        text-align: center;
-        color: #fff;
-        font-size: clamp(2.05rem, 8.8vw, 2.45rem);
-        font-weight: 800;
-        line-height: 1.05;
-        text-shadow: 0 0 28px rgba(247, 7, 118, .42);
-        position: relative;
-        z-index: 2;
-      }
-
-      #casos .cases-mobile-title::after {
-        content: "";
-        display: block;
-        width: 4.5rem;
-        height: 3px;
-        margin: 1rem auto 0;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #f70776, #FFDE21);
-        box-shadow: 0 0 24px rgba(247, 7, 118, .65);
-      }
-
-      #casos .cases-copy {
-        display: none;
-      }
-
-      #casos .cases-copy p {
-        display: none;
-      }
-
-      .cases-lane-controls,
-      #casesLeft.cases-swimlane {
-        display: none !important;
-      }
-
-      .cases-marquee {
-        display: grid;
-        gap: .85rem;
-        margin: 0 -1.5rem;
-        padding: 1.1rem 0;
-        overflow: hidden;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .02)),
-          radial-gradient(circle at 50% 50%, rgba(247, 7, 118, .13), transparent 58%);
-        border-block: 1px solid rgba(255, 255, 255, .08);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, .06),
-          inset 0 -1px 0 rgba(255, 255, 255, .04),
-          0 26px 70px -54px rgba(247, 7, 118, .95);
-        mask-image: linear-gradient(90deg, transparent 0%, black 11%, black 89%, transparent 100%);
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 11%, black 89%, transparent 100%);
-      }
-
-      .cases-marquee-track {
-        display: flex;
-        gap: .75rem;
-        width: max-content;
-        animation: cases-marquee 24s linear infinite;
-        will-change: transform;
-      }
-
-      .cases-marquee-track:nth-child(2) {
-        animation-duration: 29s;
-        animation-direction: reverse;
-      }
-
-      .cases-marquee-track:nth-child(3) {
-        animation-duration: 34s;
-      }
-
-      .case-marquee-chip {
-        flex: 0 0 auto;
-        display: inline-flex;
-        align-items: center;
-        gap: .58rem;
-        min-height: 3.15rem;
-        padding: .68rem 1rem .68rem .72rem;
-        border-radius: 999px;
-        color: rgba(255, 255, 255, .88);
-        background:
-          linear-gradient(145deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .035)) padding-box,
-          linear-gradient(135deg, rgba(247, 7, 118, .62), rgba(168, 85, 247, .36), rgba(255, 222, 33, .24)) border-box;
-        border: 1px solid transparent;
-        box-shadow: 0 18px 42px -35px rgba(247, 7, 118, .9), inset 0 1px 0 rgba(255, 255, 255, .12);
-        backdrop-filter: blur(14px);
-        font-weight: 500;
-        font-size: .93rem;
-        letter-spacing: .01em;
-        white-space: nowrap;
-      }
-
-      .cases-marquee-track:nth-child(2) .case-marquee-chip {
-        background:
-          linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03)) padding-box,
-          linear-gradient(135deg, rgba(255, 222, 33, .28), rgba(247, 7, 118, .54), rgba(255, 255, 255, .12)) border-box;
-      }
-
-      .case-marquee-chip .chip-emoji {
-        width: 1.9rem;
-        height: 1.9rem;
-        border-radius: 999px;
-        display: inline-grid;
-        place-items: center;
-        background:
-          radial-gradient(circle at 35% 25%, rgba(255, 255, 255, .2), transparent 38%),
-          rgba(255, 255, 255, .085);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .09);
-        font-size: 1rem;
-        line-height: 1;
-        flex: 0 0 auto;
-      }
-
-      @keyframes cases-marquee {
-        from {
-          transform: translateX(0);
-        }
-
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .cases-marquee {
-          overflow-x: auto;
-          padding-inline: 1.5rem;
-          mask-image: none;
-          -webkit-mask-image: none;
-        }
-
-        .cases-marquee-track {
-          animation: none;
-        }
-      }
-
-    }
-
-    /* Ajustar alineación y proximidad */
-    #casos .cases-layout {
-      align-items: center;
-    }
-
-    /* Centra verticalmente el grid */
-
-    /* Contenedor del teléfono más compacto y centrado */
-    .phone-wa {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-      border: 0;
-      position: relative;
-      z-index: 1;
-      box-shadow: none;
-    }
-
-    /* Tamaño responsivo sin recortar */
-    .phone-wa-inner {
-      transform: scale(.95);
-      transform-origin: center;
-
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .6), 0 0 120px 30px rgba(247, 7, 118, .18);
-    }
-
-    @media (min-width:1024px) {
-      .phone-wa-inner {
-        transform: scale(1);
-
-        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .6), 0 0 120px 30px rgba(247, 7, 118, .18);
-      }
-    }
-
-    /* Separación cómoda entre cards (izq) y teléfono (der) */
-    @media (min-width:768px) {
-      #casos .cases-layout {
-        column-gap: clamp(2rem, 5vw, 4rem);
-      }
-
-      #casos .phone-wa {
-        background: transparent;
-        border-radius: 0;
-        padding: 0;
-        border: 0;
-        position: relative;
-        z-index: 1;
-        box-shadow: none;
-      }
-    }
-
-    /* Opcional: leve viñeta para profundidad general */
-    #casos {
-      position: relative;
-      overflow: hidden;
-      background: #000;
-    }
-
-    /* Vignette activa y más suave */
-    #casos::after {
-      content: "";
-      position: absolute;
-      inset: -10%;
-      pointer-events: none;
-      z-index: 0;
-      display: block;
-      background:
-        radial-gradient(1000px 600px at 30% 25%, rgba(255, 255, 255, .06), transparent 60%),
-        radial-gradient(1200px 700px at 70% 65%, rgba(247, 7, 118, .10), transparent 70%);
-      filter: saturate(90%);
-    }
-
-    /* Contenedor del teléfono para posicionar el halo */
-    .phone-wrap {
-      position: relative;
-      z-index: 1;
-      /* teléfono por encima del halo */
-    }
-
-    /* Halo fijo (sin movimiento) */
-    .phone-wrap::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      pointer-events: none;
-
-      /* Tamaño del halo */
-      width: clamp(200px, 35vw, 450px);
-      height: clamp(200px, 35vw, 450px);
-
-      /* Centramos o movemos el halo */
-      left: 50%;
-      /* punto de referencia centrado */
-      top: 50%;
-      transform: translate(-40%, -50%);
-      /* -50%,-50% = centro exacto
-     -40%,-50% = ligeramente a la derecha */
-
-      background: radial-gradient(closest-side,
-          rgba(247, 7, 118, .80) 0%,
-          rgba(247, 7, 118, .38) 38%,
-          rgba(247, 7, 118, .18) 58%,
-          rgba(247, 7, 118, 0) 72%);
-      filter: blur(50px);
-    }
-
-    /* === Fluxy patch: Casos de uso layout & themes === */
-    /* Reset old left-margin when phone sits on the left column */
-    @media (min-width:768px) {
-      #casos .phone-wa {
-        background: transparent;
-        border-radius: 0;
-        padding: 0;
-        border: 0;
-        position: relative;
-        z-index: 1;
-        box-shadow: none;
-      }
-    }
-
-    /* Make the phone column sticky for stronger presence */
-    #casos .phone-top {
-      position: sticky;
-    }
-
-    /* Theme-based bubble colors per case (clear visual differentiation) */
-    #phoneShell[data-theme="gym"] .msg-out {
-      background: #de765a;
-    }
-
-    /* green-ish */
-    #phoneShell[data-theme="salon"] .msg-out {
-      background: #bff05d;
-    }
-
-    /* pink */
-    #phoneShell[data-theme="shop"] .msg-out {
-      background: #69e9e0;
-    }
-
-    /* light-cyan */
-    #phoneShell[data-theme="realestate"] .msg-out {
-      background: #848ad8;
-    }
-
-    /* light-sky */
-    #phoneShell[data-theme="academy"] .msg-out {
-      background: #e06fd8;
-    }
-
-    /* light-amber */
-    #phoneShell[data-theme="events"] .msg-out {
-      background: #ff5151;
-    }
-
-    /* light-indigo */
-
-    /* Optional: slightly tint incoming messages to match each theme (very subtle) */
-    #phoneShell[data-theme="salon"] .msg-in {
-      background: #FFFFFF;
-    }
-
-    #phoneShell[data-theme="shop"] .msg-in {
-      background: #FFFFFF;
-    }
-
-    #phoneShell[data-theme="realestate"] .msg-in {
-      background: #FFFFFF;
-    }
-
-    #phoneShell[data-theme="academy"] .msg-in {
-      background: #FFFFFF;
-    }
-
-    #phoneShell[data-theme="events"] .msg-in {
-      background: #FFFFFF;
-    }
-
-
-    /* Separación amplia entre cards (izq) y teléfono (der) */
-    @media (min-width:768px) {
-      #casos .cases-layout {
-        column-gap: clamp(4rem, 8vw, 10rem);
-      }
-
-      #casos .phone-col {
-        display: flex;
-        justify-content: center;
-        overflow: visible;
-      }
-    }
-
-    @media (max-width:767px) {
-      #casos .phone-col {
-        display: none;
-      }
-
-      #casos .phone-top {
-        position: static;
-      }
-    }
-
-    .case-phone-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      overflow-y: auto;
-      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
-      background: rgba(2, 6, 23, .82);
-      backdrop-filter: blur(10px);
-    }
-
-    .case-phone-modal.hidden {
-      display: none;
-    }
-
-    .case-phone-dialog {
-      width: min(100%, 26rem);
-      max-height: none;
-      overflow: visible;
-      border-radius: 1.25rem;
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: linear-gradient(180deg, rgba(15, 23, 42, .98), rgba(10, 10, 16, .98));
-      box-shadow: 0 24px 90px -28px rgba(0, 0, 0, .9);
-      padding: 1rem 1rem 1.25rem;
-    }
-
-    .case-phone-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: .8rem;
-    }
-
-    .case-phone-title {
-      color: #fff;
-      font-weight: 800;
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
-    .case-phone-close {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      background: rgba(255, 255, 255, .1);
-      border: 1px solid rgba(255, 255, 255, .14);
-    }
-
-    #casos .case-phone-modal .phone-col {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      overflow: visible;
-    }
-
-    .case-phone-modal .phone-wa-inner {
-      width: min(78vw, 300px) !important;
-      height: min(calc(100dvh - 9rem), 570px) !important;
-      transform: none;
-      transform-origin: top center;
-    }
-
-    @media (min-width:768px) {
-      .case-phone-modal {
-        display: none !important;
-      }
-    }
-
-    @media (min-width:1280px) {
-      #casos .cases-layout {
-        column-gap: clamp(8rem, 12vw, 18rem);
-      }
-
-      #casos .phone-col {
-        transform: none;
-      }
     }
 
     /* Contenedor donde insertás el flujo */
@@ -1673,22 +769,77 @@
     .hero-copy {
       position: relative;
       z-index: 3;
-      max-width: 40rem;
+      max-width: 50rem;
+    }
+
+    .hero-title {
+      max-width: 12ch;
+      margin-bottom: 1.75rem;
+      font-size: 4.25rem;
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .hero-lede {
+      max-width: 44rem;
+      margin-bottom: 2.25rem;
+      font-size: 1.375rem;
+      line-height: 1.55;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 5rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .hero-title {
+        font-size: 5.5rem;
+      }
     }
 
     @media (max-width: 767px) {
       .hero-immersive {
-        min-height: auto;
-        align-items: flex-start;
-        padding-top: 4.75rem;
-        padding-bottom: 19rem;
+        min-height: calc(100svh - 56px);
+        align-items: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
         background:
-          linear-gradient(180deg, rgba(5, 5, 7, .98) 0%, rgba(5, 5, 7, .92) 45%, rgba(5, 5, 7, .34) 72%, rgba(5, 5, 7, .74) 100%),
+          linear-gradient(180deg, rgba(5, 5, 7, .97) 0%, rgba(5, 5, 7, .9) 54%, rgba(5, 5, 7, .72) 100%),
           url("./static/hero-fluxy-dashboard.png"),
           linear-gradient(135deg, #050507 0%, #160817 56%, #251027 100%);
-        background-size: cover, 185% auto, cover;
-        background-position: center, 62% bottom, center;
+        background-size: cover, auto 100%, cover;
+        background-position: center, 64% center, center;
         background-repeat: no-repeat;
+      }
+
+      .hero-copy {
+        max-width: 31rem;
+      }
+
+      .hero-title {
+        max-width: 13ch;
+        margin-bottom: 1rem;
+        font-size: 2.25rem;
+        line-height: 1.05;
+      }
+
+      .hero-lede {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .hero-actions {
+        gap: .625rem;
+      }
+
+      .hero-actions a {
+        padding-top: .7rem;
+        padding-bottom: .7rem;
       }
 
       .hero-orb.orb-left {
@@ -1743,16 +894,14 @@
       <span class="hero-orb orb-right" aria-hidden="true"></span>
       <div class="w-full max-w-7xl mx-auto px-6 relative z-[1]">
         <div class="hero-copy">
-          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Fluxy gestiona tu
-            <span class="text-yellow-400">WhatsApp</span>
-            mientras vos hacés crecer tu negocio
+          <h1 class="hero-title">
+            Fluxy optimiza tu <span class="text-yellow-400">Negocio Inmobiliario</span>
           </h1>
 
-          <p class="text-xl mb-8">
-            <strong>Automatizá el WhatsApp de tu negocio</strong> para atender clientes al instante, tomar pedidos y reservas, responder preguntas frecuentes y <strong>estar disponible 24/7</strong>.
+          <p class="hero-lede">
+            <strong>Convertí cada consulta en una oportunidad para tu inmobiliaria.</strong> Fluxy automatiza WhatsApp, Instagram y procesos internos para responder, calificar leads, coordinar visitas y hacer seguimiento 24/7.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="hero-actions flex flex-col sm:flex-row gap-4">
             <a href="https://wa.me/59892131808?text=Me%20interesa%20Fluxy"
               target="_blank" rel="noopener"
               class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-bold text-center hover:bg-yellow-300 transition">Probalo
@@ -1772,11 +921,11 @@
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-8 md:mb-10">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Tu equipo digital, en un solo click
+            Tu agente inmobiliario, en un solo click
           </h2>
           <p class="max-w-3xl mx-auto text-gray-600 text-lg">
-            Elegí que preferís automatizar y Fluxy responde por vos.<br>
-            Sumá tantos Fluxys como necesites.
+            Automatizá la atención, la agenda y la operación diaria de tu inmobiliaria<br>
+            con agentes digitales especializados.
           </p>
         </div>
 
@@ -1793,50 +942,26 @@
           <div class="octo-carousel" id="fluxyCarousel">
           <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-anfitrion octo-slide">
             <div class="octo-scene">
-              <img src="./static/fluxy-anfitrion.png" alt="Fluxy Anfitrión" class="octo-scene-image" decoding="async" />
+              <img src="./static/fluxy-anfitrion-inmobiliario.png" alt="Fluxy Anfitrión atendiendo consultas inmobiliarias" class="octo-scene-image" decoding="async" />
             </div>
             <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Anfitrión</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Atiende consultas generales, responde preguntas frecuentes y orienta a tus clientes las 24 horas, como si tu negocio tuviera siempre alguien disponible.</p>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Responde consultas de compradores e inquilinos, presenta propiedades y califica cada lead según zona, presupuesto y tipo de operación, las 24 horas.</p>
           </div>
 
-          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-ventas octo-slide">
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-agenda octo-slide">
             <div class="octo-scene">
-              <img src="./static/fluxy-ventas-v2.png" alt="Fluxy Ventas" class="octo-scene-image" decoding="async" />
+              <img src="./static/fluxy-agenda-inmobiliaria.png" alt="Fluxy Agenda coordinando visitas a propiedades" class="octo-scene-image" loading="lazy" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Ventas</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Ayuda a convertir consultas en pedidos, recomendando productos, compartiendo precios y guiando al cliente hasta dejar la venta lista para cerrar.</p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Agenda</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Coordina visitas, consulta disponibilidad, confirma horarios y envía recordatorios automáticos para reducir demoras y evitar oportunidades perdidas.</p>
           </div>
 
-          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-reservas octo-slide">
+          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-administrativo octo-slide">
             <div class="octo-scene">
-              <img src="./static/fluxy-reservas-v2.png" alt="Fluxy Reservas" class="octo-scene-image" decoding="async" />
+              <img src="./static/fluxy-administrativo-inmobiliario.png" alt="Fluxy Administrativo organizando la operación inmobiliaria" class="octo-scene-image" loading="lazy" decoding="async" />
             </div>
-            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Reservas</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Gestiona turnos, reservas y disponibilidad de forma automática, para que tus clientes puedan coordinar sin idas y vueltas.</p>
-          </div>
-
-          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-eventos octo-slide">
-            <div class="octo-scene">
-              <img src="./static/fluxy-eventos.png" alt="Fluxy Eventos" class="octo-scene-image" decoding="async" />
-            </div>
-            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Eventos</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Recibe pedidos de eventos, entiende qué necesita cada cliente, genera cotizaciones personalizadas y acompaña el seguimiento hasta cerrar la reserva, todo desde WhatsApp y sin perder oportunidades.</p>
-          </div>
-
-          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-finanzas octo-slide">
-            <div class="octo-scene">
-              <img src="./static/fluxy-finanzas-v2.png" alt="Fluxy Finanzas" class="octo-scene-image" decoding="async" />
-            </div>
-            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Finanzas</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Ordena cobros, pagos y comprobantes para que tengas más control y menos seguimiento manual en cada operación.</p>
-          </div>
-
-          <div class="p-8 rounded-xl shadow-md transition feature-card octo-card octo-rrhh octo-slide">
-            <div class="octo-scene">
-              <img src="./static/fluxy-talento-v2.png" alt="Fluxy Talento" class="octo-scene-image" decoding="async" />
-            </div>
-            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Talento</h3>
-            <p class="text-[0.95rem] leading-6 text-gray-700">Recibe postulaciones, analiza CVs y ordena candidatos para que encuentres más rápido los perfiles que mejor encajan con cada búsqueda.</p>
+            <h3 class="text-xl font-bold mb-3 octo-title">Fluxy Administrativo</h3>
+            <p class="text-[0.95rem] leading-6 text-gray-700">Organiza documentación, estados de propiedades, pagos y tareas internas para que tu equipo tenga cada operación al día y bajo control.</p>
           </div>
           </div>
         </div>
@@ -1849,162 +974,15 @@
 
 
 
-    <!-- NUEVO ORDEN (v3): Casos de uso – cards a la izquierda; teléfono a la derecha -->
-    <section id="casos" class="relative py-16 md:py-20 bg-black text-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="cases-mobile-title">Fluxy se adapta a todos los negocios</h2>
-        <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-start cases-layout">
-
-          <!-- Izquierda: título + grid de opciones -->
-          <div class="md:pr-6 lg:pr-8">
-            <div class="cases-copy mb-8 md:mb-12">
-              <h2 class="cases-heading text-3xl md:text-4xl font-bold mb-3">
-                Fluxy se adapta a todos los negocios
-              </h2>
-              <p class="text-white/70">Elegí tu rubro y mirá lo que puede hacer por vos.
-              </p>
-            </div>
-
-            <div class="cases-marquee" aria-label="Rubros donde Fluxy puede aplicarse">
-              <div class="cases-marquee-track">
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏋️</span>Gimnasios y Estudios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💇</span>Peluquerías</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💅</span>Centros de Estética</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏠</span>Inmobiliarias</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎓</span>Academias y cursos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎉</span>Eventos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏋️</span>Gimnasios y Estudios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💇</span>Peluquerías</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💅</span>Centros de Estética</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏠</span>Inmobiliarias</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎓</span>Academias y cursos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🎉</span>Eventos</span>
-              </div>
-              <div class="cases-marquee-track">
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛍️</span>Comercios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📦</span>Tiendas online</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🍽️</span>Restaurantes</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛠️</span>Servicios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🩺</span>Consultorios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🚗</span>Talleres</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛍️</span>Comercios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📦</span>Tiendas online</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🍽️</span>Restaurantes</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🛠️</span>Servicios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🩺</span>Consultorios</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🚗</span>Talleres</span>
-              </div>
-              <div class="cases-marquee-track">
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏨</span>Hoteles</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💼</span>Profesionales</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📅</span>Turnos y reservas</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🤝</span>Atención al cliente</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💳</span>Cobros y pagos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🧾</span>Pedidos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🏨</span>Hoteles</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💼</span>Profesionales</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">📅</span>Turnos y reservas</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🤝</span>Atención al cliente</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">💳</span>Cobros y pagos</span>
-                <span class="case-marquee-chip"><span class="chip-emoji" aria-hidden="true">🧾</span>Pedidos</span>
-              </div>
-            </div>
-
-            <!-- Grid de opciones -->
-            <div class="cases-lane-controls" aria-label="Mover rubros">
-              <button type="button" class="octo-carousel-btn cases-lane-btn" data-cases-dir="-1" aria-label="Ver rubro anterior">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-              </button>
-              <button type="button" class="octo-carousel-btn cases-lane-btn" data-cases-dir="1" aria-label="Ver siguiente rubro">
-                <i class="fas fa-arrow-right" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div id="casesLeft" class="cases-swimlane">
-              <button class="use-card glass case-item" data-key="gym">
-                <div class="case-icon"><i class="fas fa-dumbbell"></i></div>
-                <div class="case-title">Gimnasios y Estudios
-                </div>
-                <div class="case-sub">Gestionamos reservas con cupos, listas de espera y recordatorios.
-                </div>
-              </button>
-
-              <button class="use-card glass case-item" data-key="salon">
-                <div class="case-icon"><i class="fas fa-cut"></i></div>
-                <div class="case-title">Peluquerías y Centros de Estética
-                </div>
-                <div class="case-sub">Gestionamos turnos y reprogramaciones.
-                </div>
-              </button>
-
-              <button class="use-card glass case-item" data-key="shop">
-                <div class="case-icon"><i class="fas fa-store"></i></div>
-                <div class="case-title">Comercios</div>
-                <div class="case-sub">Preguntas frecuentes y ventas de productos.
-                </div>
-              </button>
-
-              <button class="use-card glass case-item" data-key="realestate">
-                <div class="case-icon"><i class="fas fa-home"></i></div>
-                <div class="case-title">Inmobiliarias</div>
-                <div class="case-sub">Agendamos visitas y brindamos información relevante.
-                </div>
-              </button>
-
-              <button class="use-card glass case-item" data-key="academy">
-                <div class="case-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="case-title">Academias y cursos</div>
-                <div class="case-sub">Reservas con cupo, cobros y avisos importantes
-                </div>
-              </button>
-
-              <button class="use-card glass case-item" data-key="events">
-                <div class="case-icon"><i class="fas fa-glass-cheers"></i></div>
-                <div class="case-title">Eventos</div>
-                <div class="case-sub">Reservas y confirmación de asistencia
-                </div>
-              </button>
-            </div>
-          </div>
-
-          <!-- Derecha: teléfono (más grande, sticky para abarcar toda la columna) -->
-          <div class="md:pl-6 lg:pl-8 phone-col">
-            <div class="phone-top">
-              <div class="phone-wrap">
-                <div class="phone-wa">
-                  <div class="phone-wa-inner w-[224px] h-[432px] md:w-[300px] md:h-[570px]" id="phoneShell"
-                    data-theme="gym">
-
-
-                    <div id="phoneView" class="w-full h-full"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div id="casePhoneModal" class="case-phone-modal hidden" role="dialog" aria-modal="true"
-        aria-labelledby="casePhoneModalTitle">
-        <div class="case-phone-dialog">
-          <div class="case-phone-header">
-            <h3 id="casePhoneModalTitle" class="case-phone-title">Conversación</h3>
-            <button type="button" class="case-phone-close" aria-label="Cerrar conversación"
-              data-case-modal-close>&times;</button>
-          </div>
-          <div id="casePhoneModalBody"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NUEVO ORDEN: Precios (tercera sección, fondo blanco, textos legibles) -->
-    <section id="precios" class="py-20 bg-white text-gray-900">
-      <div class="max-w-7xl mx-auto px-6">
+    <!-- NUEVO ORDEN: Precios -->
+    <section id="precios" class="relative overflow-hidden py-20 text-gray-900" style="background-color: #1e2736;">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+        style="background: radial-gradient(circle at 50% 0%, rgba(247, 7, 118, .18), transparent 38%);"></div>
+      <div class="relative max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Planes tan simples como una conversación
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Planes tan simples como una conversación
           </h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto">Los primeros 30 días son gratis.
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">Los primeros 30 días son gratis.
           </p>
         </div>
 
@@ -2015,19 +993,23 @@
             <div>
               <div class="mb-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Plan Básico</h3>
-                <p class="text-gray-600">Ideal para empezar a automatizar tu WhatsApp sin complicarte.</p>
+                <p class="text-gray-600">Ideal para empezar a automatizar tu negocio sin complicarte.</p>
               </div>
-              <div class="mb-6">
-                <span class="text-4xl font-bold text-fluxy">$50</span>
-                <span class="text-gray-500">/mes</span>
-                <span class="text-gray-400 text-sm ml-2">USD</span>
+              <div class="mb-6" role="group" aria-label="Antes 200 dólares. Ahora 150 dólares por mes, 25 por ciento de descuento.">
+                <div class="mb-1 flex flex-wrap items-center gap-2" aria-hidden="true">
+                  <del class="text-lg font-medium text-gray-400">U$S 200</del>
+                  <span class="rounded-md bg-yellow-300 px-2 py-1 text-xs font-bold text-gray-900">25% OFF</span>
+                </div>
+                <div class="flex flex-wrap items-baseline gap-2 whitespace-nowrap" aria-hidden="true">
+                  <span class="text-4xl font-bold text-fluxy">U$S 150</span>
+                  <span class="text-gray-500">/ mes</span>
+                </div>
               </div>
               <p class="mb-3 font-bold text-gray-800">Incluye:</p>
               <ul class="mb-8 space-y-3 text-black">
                 <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Fluxy Anfitrión</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Respuestas a consultas frecuentes 24/7</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Información general del negocio</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Horarios, ubicación, servicios y productos</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Información general de las propiedades disponibles</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Derivación a una persona cuando sea necesario</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Acceso a plataforma Fluxy</span></li>
               </ul>
@@ -2047,8 +1029,8 @@
               </div>
             <div>
               <div class="mb-6">
-                <h3 class="text-xl font-bold mb-2">Plan <br> Equipo Digital</h3>
-                <p>Ideal para automatizar tu negocio y llevarlo al siguiente nivel</p>
+                <h3 class="text-xl font-bold mb-2">Plan <br> Tu Agente Inmobiliario</h3>
+                <p>Automatizamos tu negocio y lo llevamos al siguiente nivel.</p>
               </div>
               <div class="mb-6">
                 <span class="text-4xl font-bold">A medida</span>
@@ -2058,8 +1040,7 @@
               <ul class="mb-8 space-y-3">
                 <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Todo lo del Plan Básico</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Fluxys adicionales según tu necesidad</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Ayuda a vender más y tomar pedidos</span></li>
-                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Gestión de reservas, agenda y listas de espera</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Gestión de agenda y listas de espera</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Cobros, pagos y recordatorios automáticos</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Integración con herramientas de tu negocio</span></li>
                 <li class="flex items-start"><i class="fas fa-check text-white mt-1 mr-2"></i><span>Alertas cuando una conversación necesita tu intervención</span></li>
@@ -2231,7 +1212,7 @@
     <!-- CTA (sin cambios) -->
     <section id="cta" class="py-20 bg-gray-900 text-white">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para transformar tu negocio?</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para transformar tu inmobiliaria?</h2>
         <p class="text-xl mb-8">Sumá a Fluxy a tu equipo y comenzá a vender más.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -2332,372 +1313,6 @@
         });
       });
     })();
-
-
-    // ----------------- Showcase de casos (dinámico con typing) -----------------
-    (function () {
-      const phone = document.getElementById('phoneView');
-      const cards = Array.from(document.querySelectorAll('#casesLeft .use-card'));
-      const phoneCol = document.querySelector('#casos .phone-col');
-      const modal = document.getElementById('casePhoneModal');
-      const modalBody = document.getElementById('casePhoneModalBody');
-      const modalTitle = document.getElementById('casePhoneModalTitle');
-      const casesLane = document.getElementById('casesLeft');
-      const casesLaneButtons = Array.from(document.querySelectorAll('[data-cases-dir]'));
-      const phoneAnchor = document.createComment('phone-desktop-position');
-
-      if (!phone || !cards.length || !phoneCol || !modal || !modalBody || !modalTitle || !casesLane) return;
-      phoneCol.before(phoneAnchor);
-      const isMobileCases = () => window.matchMedia('(max-width: 767px)').matches;
-      let didDragCases = false;
-
-      // Conversaciones más humanas, con la “voz” de Fluxy
-      const CASES = {
-        gym: {
-          title: 'Gimnasios y estudios',
-          lines: [
-            ['Cliente', 'Hola, quiero arrancar Pilates, ¿necesito experiencia previa?'],
-            ['Fluxy', '¡Hola! 🐙 No hace falta experiencia previa. Tenemos clases para todos los niveles y adaptamos los ejercicios a tu ritmo.'],
-            ['Cliente', 'Perfecto, tengo PaseLibre'],
-            ['Cliente', '¿cómo puedo reservar?'],
-            ['Fluxy', 'Muy fácil, pasame tu nombre y mail y te doy de alta con ese plan. Luego vas a poder reservar 12 clases por mes.'],
-            ['Cliente', 'Ah me encanta!'],
-            ['Cliente', 'Ana López – ana@gmail.com'],
-            ['Fluxy', 'Listo Ana 🙌 quedaste registrada con plan PaseLibre'],
-            ['Cliente', 'Ya puedo reservar?'],
-            ['Cliente', 'Que disponibilidad hay para esta semana?'],
-            ['Fluxy', 'Para esta semana Pilates hay cupo el martes 18:30 y jueves 10:00. ¿Cuál preferís?'],
-            ['Cliente', 'El jueves 10:00 me viene genial'],
-            ['Fluxy', 'Perfecto, jueves 10:00 reservado ✅ Te recuerdo 24 hs antes.'],
-            ['Cliente', 'Como es la política de cancelación?'],
-            ['Fluxy', 'Podés cancelar hasta 2 hs antes sin costo. Si avisás con menos tiempo, se descuenta una clase de tu plan.'],
-            ['Cliente', 'Como hago para cancelar una clase?'],
-            ['Fluxy', 'Es muy facil, me escribis que clase queres cancelar y listo, yo me encargo.'],
-            ['Cliente', 'Genial, muchas gracias!'],
-
-          ]
-          ,
-          chips: ['No-shows ↓', 'Listas de espera', 'Recordatorios']
-        },
-        salon: {
-          title: 'Salones de belleza',
-          lines: [
-            ['Cliente', 'Hola, quiero hacerme color y corte. ¿Tienen promociones esta semana?'],
-            ['Fluxy', 'Hola Patricia! 💇‍♀️, que bueno volver a verte!. Sí, esta semana tenemos 15% off en color si sumás corte y brushing.'],
-            ['Cliente', 'Genial, ¿hay turno con Ana?'],
-            ['Fluxy', 'No, Ana tiene todos los turnos ocupados, pero Gabriela tiene cupos este jueves a las 15:30 o 17:00. ¿Te sirve?'],
-            ['Cliente', 'Sí, no hay problema'],
-            ['Cliente', 'Reservame el turno de las 17:00'],
-            ['Fluxy', 'Reservado Patricia ✅. Te recuerdo 24 hs antes. Si no podés venir, avisame y te reprogramo'],
-            ['Cliente', 'Perfecto, recordame si aceptan debito.'],
-            ['Fluxy', 'Podés pagar con tarjeta debito/credito o efectivo.'],
-            ['Cliente', 'Excelente! Nos vemos el jueves'],
-            ['Fluxy', 'Nos vemos! Si necesitás algo más, escribime.'],
-            ['Cliente', 'Gracias, saludos!']
-
-          ]
-
-          ,
-          chips: ['Huecos ↓', 'Repetición ↑', 'Señas']
-        },
-        shop: {
-          title: 'Tiendas e Instagram',
-          lines: [
-            ['Cliente', 'Hola, ¿tienen stock del set Glow?'],
-            ['Fluxy', '¡Hola! Sí, tenemos stock. Sale $1.990 y viene con envío gratis en Montevideo.'],
-            ['Cliente', 'Buenísimo, ¿cómo hago para comprar?'],
-            ['Fluxy', 'Pasame dirección y barrio y te envío link MercadoPago'],
-            ['Cliente', 'Luis A. de Herrera 1234, Buceo'],
-            ['Fluxy', 'Listo 💳 Aquí va el link. Una vez que pagues, te envío confirmación y número de seguimiento.'],
-            ['Cliente', 'Pagado, te mando comprobante'],
-            ['Fluxy', 'Recibido ✅ Tu pedido sale mañana y llega en 24 hs. Te mando el link de seguimiento 🔗'],
-            ['Cliente', 'Perfecto, ¿pueden avisarme cuando salga?'],
-            ['Fluxy', 'Sí, te notifico apenas lo despachemos 📦']
-          ]
-
-          ,
-          chips: ['Reply time ↓', 'Conversiones ↑', 'Tracking']
-        },
-        realestate: {
-          title: 'Inmobiliarias',
-          lines: [
-            ['Cliente', 'Hola, me interesa el apartamento N° 158135 en Pocitos que vi en Infocasas, ¿cuándo podría visitarlo?'],
-            ['Fluxy', 'Hola 🏡 El viernes a las 18:00 está libre. ¿Querés agendar?'],
-            ['Cliente', 'Sí, pero antes, ¿me pasás precio y gastos comunes?'],
-            ['Fluxy', 'Claro, USD 185.000 y gastos comunes $6.000. Te mando ficha y ubicación 📎'],
-            ['Cliente', 'Perfecto, me gustaría confirmar una visita'],
-            ['Cliente', 'Que datos necesitan?'],
-            ['Fluxy', 'Solo tu nombre y email para agendar.'],
-            ['Cliente', 'María Pérez, mariap@gmail.com'],
-            ['Fluxy', 'Agendado ✅ Te recuerdo 2 hs antes. Si querés, puedo enviarte otras opciones similares.'],
-            ['Cliente', 'Ah perfecto, si, pasame mas opciones en Pocitos y Punta Carretas'],
-            ['Fluxy', 'Claro, te mando 3 opciones más por email.'],
-            ['Cliente', 'Gracias, si no puedo el viernes, ¿puedo reprogramar?'],
-            ['Fluxy', 'Obvio, avisame y te paso nuevos horarios disponibles.'],
-            ['Cliente', 'Excelente gracias!!!'],
-
-
-          ]
-
-          ,
-          chips: ['Agenda', 'Fichas', 'Seguimiento']
-        },
-        academy: {
-          title: 'Academias y cursos',
-          lines: [
-            ['Cliente', 'Hola, quiero anotarme a Inglés B1 pero nunca tomé clases, ¿puedo?'],
-            ['Fluxy', '¡Claro! No es problema, te hacemos una evaluación de nivel gratuita para ubicarte en el grupo ideal.'],
-            ['Cliente', 'Genial, ¿cuándo son las clases?'],
-            ['Fluxy', 'Martes y jueves 19:00 a 20:30. ¿Querés reservar tu cupo?'],
-            ['Cliente', 'Sí, ¿qué datos te paso?'],
-            ['Fluxy', 'Nombre completo y email'],
-            ['Cliente', 'Juan Castro – juan@mail.com'],
-            ['Fluxy', 'Inscripción creada ✅ Te envío link para pagar matrícula 💳'],
-            ['Cliente', 'Pago hecho, adjunto comprobante'],
-            ['Fluxy', 'Acreditado 🙌 Te agrego al grupo y te envío cronograma. Además, te aviso 48 hs antes del vencimiento de cuota.']
-          ]
-
-          ,
-          chips: ['Altas', 'Cobros ↑', 'Recordatorios']
-        },
-        events: {
-          title: 'Eventos',
-          lines: [
-            ['Cliente', 'Hola, quiero confirmar la fecha y dirección del evento del sábado'],
-            ['Fluxy', 'Claro 🎉 Es el sábado 18 de mayo, en Salón Atlántico, 21:00 hs. ¿Querés que te pase la cuenta para el depósito del regalo grupal?'],
-            ['Cliente', 'Sí, pasame'],
-            ['Fluxy', 'Cuenta BROU: 123-456-789. A nombre de María Pérez.'],
-            ['Cliente', 'Perfecto, lo hago hoy. ¿Puedo llevar acompañante?'],
-            ['Fluxy', 'Sí, pasame su nombre y genero la invitación.'],
-            ['Cliente', 'Camila S.'],
-            ['Fluxy', 'Listo ✅ Invitación generada. Te mando QR de acceso y te recuerdo un día antes.'],
-            ['Cliente', 'Gracias, cualquier cosa te escribo'],
-            ['Fluxy', 'Siempre disponible 🐙']
-          ]
-
-          ,
-          chips: ['RSVP', 'QR acceso', 'Asistencia ↑']
-        }
-      };
-
-      // Utilidades de UI
-      const make = (html) => {
-        const div = document.createElement('div');
-        div.innerHTML = html.trim();
-        return div.firstChild;
-      };
-      const scrollToBottom = (el) => el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-      const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-      const jitter = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-      let playId = 0; // para cancelar reproducciones anteriores al cambiar de card
-
-      function bubble(role, text) {
-        // Cliente => derecha (saliente, verde). Fluxy => izquierda (entrante, blanco)
-        const isOut = (role === 'Cliente');
-        const cls = isOut ? 'msg msg-out' : 'msg msg-in';
-        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const ticks = isOut ? ' <span class="meta">✓✓</span>' : '';
-        return make(`<div class="${cls}">${text}<span class="meta">${time}</span>${ticks}</div>`);
-      }
-
-      function typingBubble() {
-        return make(`
-    <div class="msg-typing">
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-      <span class="typing-dot"></span>
-    </div>
-  `);
-      }
-      function renderFrame(title, chips) {
-        const avatarSrc = './static/pulpo_fluxy.png';
-        phone.innerHTML = `
-    <div class="wa-header">
-      <div class="avatar"><img src="${avatarSrc}" alt="Fluxy" class="w-full h-full object-cover"></div>
-      <div>
-        <div class="name">Fluxy</div>
-        <div class="status"><span id="waStatus">en línea</span></div>
-      </div>
-    </div>
-    <div class="wa-chat" style="height: calc(100% - 96px);">
-      <div class="msg-wrap" id="msgs"></div>
-    </div>
-    <div class="wa-input">
-      <div class="fake"></div>
-      <div class="mic"></div>
-    </div>
-  `;
-        return phone.querySelector('#msgs');
-      }
-
-
-      let statusEl = null;
-      function setStatus(txt) {
-        // busca el span cada vez por si se re-renderizó
-        statusEl = phone.querySelector('#waStatus');
-        if (statusEl) statusEl.textContent = txt;
-      }
-
-
-      async function playConversation(key) {
-        const id = ++playId;
-        const d = CASES[key]; if (!d) return;
-        const msgs = renderFrame(d.title, d.chips);
-
-        for (const [role, text] of d.lines) {
-          if (id !== playId) return;
-
-          if (role === 'Fluxy') {
-            // mostrar “escribiendo…”
-            setStatus('escribiendo…');
-            const t = typingBubble();
-            msgs.appendChild(t);
-            scrollToBottom(msgs);
-
-            const delay = Math.min(1000, 150 + text.length * 12 + jitter(-50, 80));
-            await sleep(delay);
-            if (id !== playId) return;
-
-            t.remove();
-          } else {
-            await sleep(650 + jitter(0, 600));
-          }
-
-          msgs.appendChild(bubble(role, text));
-          scrollToBottom(msgs);
-
-          // al enviar Fluxy, volver a “en línea”
-          if (role === 'Fluxy') {
-            setTimeout(() => setStatus('en línea'), 120); // pequeño respiro
-          }
-
-          await sleep(300 + jitter(20, 80));
-        }
-      }
-
-
-      function setActive(el, { openModal = false } = {}) {
-        cards.forEach(c => c.removeAttribute('aria-current'));
-        document.getElementById('phoneShell')?.setAttribute('data-theme', el.dataset.key);
-        el.setAttribute('aria-current', 'true');
-        placePhone(el, openModal);
-        playConversation(el.dataset.key);
-      }
-
-      function openCaseModal(activeCard) {
-        const title = activeCard.querySelector('.case-title')?.textContent?.trim() || 'Conversación';
-        modalTitle.textContent = title;
-        modalBody.appendChild(phoneCol);
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeCaseModal() {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-        phoneAnchor.after(phoneCol);
-        playId++;
-      }
-
-      function placePhone(activeCard, openModal) {
-        if (isMobileCases()) {
-          if (openModal) openCaseModal(activeCard);
-          else phoneAnchor.after(phoneCol);
-        } else {
-          modal.classList.add('hidden');
-          document.body.style.overflow = '';
-          phoneAnchor.after(phoneCol);
-        }
-      }
-
-      // Eventos: hover/focus/click
-      let dragStartX = 0;
-      let dragStartY = 0;
-      let dragActive = false;
-
-      casesLane.addEventListener('pointerdown', (event) => {
-        dragStartX = event.clientX;
-        dragStartY = event.clientY;
-        dragActive = true;
-        didDragCases = false;
-      });
-
-      casesLane.addEventListener('pointermove', (event) => {
-        if (!dragActive || !isMobileCases()) return;
-        const dx = Math.abs(event.clientX - dragStartX);
-        const dy = Math.abs(event.clientY - dragStartY);
-        if (dx > 12 && dx > dy) didDragCases = true;
-      });
-
-      ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
-        casesLane.addEventListener(eventName, () => {
-          dragActive = false;
-          setTimeout(() => {
-            didDragCases = false;
-          }, 120);
-        });
-      });
-
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-          if (!isMobileCases()) setActive(card);
-        });
-        card.addEventListener('focus', () => {
-          if (!isMobileCases()) setActive(card);
-        });
-        card.addEventListener('click', (event) => {
-          if (isMobileCases() && didDragCases) {
-            event.preventDefault();
-            return;
-          }
-          setActive(card, { openModal: isMobileCases() });
-        });
-      });
-
-      casesLaneButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const dir = Number(button.getAttribute('data-cases-dir') || '1');
-          const firstCard = cards[0];
-          const laneStyles = getComputedStyle(casesLane);
-          const gap = parseFloat(laneStyles.columnGap || laneStyles.gap || '16') || 16;
-          const cardStep = firstCard.getBoundingClientRect().width + gap;
-          casesLane.scrollBy({ left: dir * cardStep, behavior: 'smooth' });
-        });
-      });
-
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) closeCaseModal();
-      });
-
-      modal.querySelectorAll('[data-case-modal-close]').forEach((button) => {
-        button.addEventListener('click', closeCaseModal);
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
-          closeCaseModal();
-        }
-      });
-
-      // Estado inicial
-      if (isMobileCases()) {
-        cards.forEach(c => c.removeAttribute('aria-current'));
-        phoneAnchor.after(phoneCol);
-      } else {
-        setActive(cards[0]);
-      }
-
-      window.addEventListener('resize', () => {
-        const active = document.querySelector('#casesLeft .use-card[aria-current="true"]') || cards[0];
-        if (isMobileCases()) {
-          if (modal.classList.contains('hidden')) phoneAnchor.after(phoneCol);
-        } else {
-          placePhone(active, false);
-        }
-      });
-    })();
-
 
 
     // Auto-altura del iframe (eliminado: ya no usamos iframe)
