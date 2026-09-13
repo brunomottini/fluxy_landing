@@ -25,24 +25,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build production landing
+      - name: Validate production landing
         shell: bash
         run: |
           set -euo pipefail
-          cat .deploy/index.gz.*.b64 | tr -d '\n' | base64 --decode | gzip --decompress > index.html
-          rm -rf .deploy
-
-          # Fail the deployment if a critical production asset or tracker is missing.
           test -s index.html
-          test -s static/fluxy-favicon.webp
-          test -s static/fluxy-logo.webp
-          test -s static/fluxy-hero-tentacle.webp
-          test -s static/fluxy-team-tentacle.webp
           grep -q 'G-23Y5TBLYTM' index.html
           grep -q 'AW-17725808040' index.html
-          grep -q './static/fluxy-logo.webp' index.html
-          grep -q './static/fluxy-hero-tentacle.webp' index.html
-          grep -q './static/fluxy-team-tentacle.webp' index.html
+          grep -q 'Probalo gratis 30 días' index.html
+          grep -q 'linkedin.com/company/fluxy-latam' index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
