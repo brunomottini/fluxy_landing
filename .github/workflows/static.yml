@@ -32,7 +32,7 @@ jobs:
           test -s index.html
           grep -q 'G-23Y5TBLYTM' index.html
           grep -q 'AW-17725808040' index.html
-          grep -q 'Probalo gratis 30 días' index.html
+          grep -q 'Todo lo que vendés en videos y vivos' index.html
           grep -q 'linkedin.com/company/fluxy-latam' index.html
 
       - name: Setup Pages
