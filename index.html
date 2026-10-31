@@ -436,6 +436,8 @@ dialog.vid::backdrop{background:rgba(28,11,56,.82)}
 dialog.vid video{width:100%;aspect-ratio:16/9;display:block;border-radius:20px;background:#fff}
 dialog.vid .close{position:absolute;top:-52px;right:0;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--noche);font:700 1.3rem/1 var(--font);cursor:pointer}
 dialog.vid[open]{overflow:visible;margin:auto}
+dialog.vid.vertical{width:min(420px,calc(100vw - 32px),calc((100vh - 120px) * 9 / 16))}
+dialog.vid.vertical video{aspect-ratio:9/16}
 
 
 /* MOBILE polish */
@@ -826,7 +828,11 @@ dialog.vid[open]{overflow:visible;margin:auto}
   var dlg = document.getElementById('vid'), vEl = document.getElementById('vid-el');
   document.querySelectorAll('[data-video]').forEach(function(b){
     b.addEventListener('click', function(){
-      if (dlg.showModal){ dlg.showModal(); try { vEl.play(); } catch(e){} }
+      var vertical = window.matchMedia('(max-width: 700px)').matches;
+      var src = vertical ? 'assets/fluxy-vertical.mp4' : 'assets/fluxy.mp4';
+      dlg.classList.toggle('vertical', vertical);
+      if (vEl.getAttribute('src') !== src){ vEl.setAttribute('src', src); vEl.setAttribute('poster', vertical ? 'assets/poster-vertical.jpg' : 'assets/poster.jpg'); vEl.load(); }
+      if (dlg.showModal){ dlg.showModal(); try { var pr = vEl.play(); if (pr && pr.catch) pr.catch(function(){}); } catch(e){} }
     });
   });
   function closeV(){ try { vEl.pause(); } catch(e){} if (dlg.open) dlg.close(); }
